@@ -24,13 +24,19 @@ export class ScreensizeService {
 
   isDesktopSignal = toSignal(this.isDesktop$);
 
+  constructor() {
+    this.checkSize().pipe(
+      tap(isDesktop => this.isDesktop$.next(isDesktop))
+    ).subscribe();
+  }
+
   /**
    * Checks screen size and emits new value for isDesktop$ behavior subject
    * 
    * @param value 
    * @return {Observable<boolean>}
    */
-  checkSize(): Observable<boolean> {
+  private checkSize(): Observable<boolean> {
 
     return this.breakpointObserver.observe(['(min-width: 840px)']).pipe(
       map(result => {

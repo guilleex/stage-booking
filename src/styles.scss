@@ -5,6 +5,7 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+
 html {
   height: 100%;
   @include mat.theme(
@@ -37,3 +38,37 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+.mat-mdc-form-field {
+  margin-bottom: 1.5rem;
+}
+
+// ─── Registration / shared dialog panel overrides ───────────────────────────────
+.custom-dialog {
+  // Remove default Material padding on the container
+
+  .mat-mdc-dialog-container {
+    padding: 0 !important;
+    border-radius: 1rem !important;
+    overflow: hidden;
+
+    .mat-toolbar {
+      @include mat.icon-overrides((
+        color: white,
+      ));
+    }
+  }
+
+  // On mobile the container fills the whole screen, no rounding
+  @media (max-width: 839px) {
+
+    .mat-mdc-dialog-container {
+
+      .mat-mdc-dialog-surface {
+        border-radius: 0 !important;
+      }
+
+      border-radius: 0 !important;
+    }
+  }
+}

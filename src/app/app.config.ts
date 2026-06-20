@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from '@angular/core';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading, withRouterConfig } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
@@ -11,9 +11,9 @@ import { DatePipe } from '@angular/common';
 // import { provideNativeDateAdapter } from './shared/services/date-adapter.provider';
 import { DateLocaleService } from './shared/services/date-locale/date-locale.service';
 import { provideTranslateService } from '@ngx-translate/core';
-import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { I18nService } from './shared/services/i18n/i18n.service';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,7 +44,12 @@ export const appConfig: ApplicationConfig = {
     },
     { 
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, 
-      useValue: {appearance: 'outline', floatLabel: 'always', subscriptSizing: 'dynamic'}
+      useValue: {
+        appearance: 'outline', 
+        floatLabel: 'always', 
+        subscriptSizing: 'dynamic', 
+        hideRequiredMarker: true
+      }
     },
     {
       provide: MAT_DATE_LOCALE,
@@ -58,6 +63,6 @@ export const appConfig: ApplicationConfig = {
     DateLocaleService, // Ensure DateLocaleService is initialized
     DatePipe,
     provideTranslateService({ lang: 'en' }),
-    importProvidersFrom(NgIdleKeepaliveModule.forRoot())
+    provideToastr()
   ],
 };

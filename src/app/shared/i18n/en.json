@@ -1,1 +1,7 @@
-{}
+{
+    "LABEL": {
+        "LOGIN": "Login",
+        "NO_ACCOUNT": "Don't have an account?",
+        "REGISTER": "Register"
+    }
+}

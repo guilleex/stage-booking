@@ -1,1 +1,38 @@
-<p>auth works!</p>
+<app-loading />
+
+<main class="auth-shell" [class.is-desktop]="isDesktop()" [class.is-mobile]="!isDesktop()">
+    <section class="auth-card" aria-label="Authentication form">
+        <div class="auth-brand">
+            <img class="auth-logo auth-logo--desktop" src="logo.png" alt="VD System logo" />
+            <img class="auth-logo auth-logo--mobile" src="vd-system-logo-mobile.png" alt="VD System logo" />
+            <h1>{{ 'LABEL.LOGIN' | translate }}</h1>
+            <p>
+                {{ 'LABEL.NO_ACCOUNT' | translate }}
+                <span (click)="openRegistrationDialog()">{{ 'LABEL.REGISTER' | translate }}</span>
+            </p>
+        </div>
+
+        <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'LABEL.USERNAME' | translate }}</mat-label>
+                <input matInput formControlName="userName" required autocomplete="username" />
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'LABEL.PASSWORD' | translate }}</mat-label>
+                <input matInput type="password" formControlName="password" required autocomplete="current-password" />
+                <mat-icon matSuffix>key</mat-icon>
+            </mat-form-field>
+
+            <button class="forgot-link" mat-button type="button" (click)="forgotPassword()">
+                {{ 'BUTTON.FORGOT_PASSWORD' | translate }}
+            </button>
+
+            <button class="login-button" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+                {{ 'BUTTON.LOGIN' | translate }}
+            </button>
+        </form>
+    </section>
+</main>
+

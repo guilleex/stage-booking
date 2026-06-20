@@ -1,0 +1,114 @@
+<mat-toolbar class="reg-toolbar">
+    <span>{{ 'LABEL.REGISTRATION' | translate }}</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-icon-button mat-dialog-close aria-label="Close modal button">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-dialog-content class="reg-content">
+    <form [formGroup]="form" class="reg-form" [class.reg-form--desktop]="isDesktop()">
+
+        <!-- Row 1: First name + Last name -->
+        <div class="reg-row">
+            <mat-form-field appearance="outline" class="reg-field">
+                <mat-label>{{ 'LABEL.FIRST_NAME' | translate }}</mat-label>
+                <input matInput formControlName="firstName" />
+                <mat-icon matSuffix>account_box</mat-icon>
+                @if (form.get('firstName')?.touched && form.get('firstName')?.errors?.['required']) {
+                    <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="reg-field">
+                <mat-label>{{ 'LABEL.LAST_NAME' | translate }}</mat-label>
+                <input matInput formControlName="lastName" />
+                <mat-icon matSuffix>account_box</mat-icon>
+                @if (form.get('lastName')?.touched && form.get('lastName')?.errors?.['required']) {
+                    <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <!-- Row 2: Email – full width -->
+        <div class="reg-row reg-row--full">
+            <mat-form-field appearance="outline" class="reg-field">
+                <mat-label>{{ 'LABEL.EMAIL' | translate }}</mat-label>
+                <input matInput type="email" formControlName="email" />
+                <mat-icon matSuffix>email</mat-icon>
+                @if (form.get('email')?.touched && form.get('email')?.errors?.['email']) {
+                    <mat-error>{{ 'ERROR.INVALID_EMAIL' | translate }}</mat-error>
+                }
+                @if (form.get('email')?.touched && form.get('email')?.errors?.['maxlength']) {
+                    <mat-error>{{ 'ERROR.MAX_LENGTH' | translate }}</mat-error>
+                }
+                @if (form.get('email')?.touched && form.get('email')?.errors?.['elementExists']) {
+                    <mat-error>{{ 'ERROR.EMAIL_TAKEN' | translate }}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <!-- Row 3: Phone + Username -->
+        <div class="reg-row">
+            <mat-form-field appearance="outline" class="reg-field">
+                <mat-label>{{ 'LABEL.PHONE_NUMBER' | translate }}</mat-label>
+                <input matInput type="tel" formControlName="phone" />
+                <mat-icon matSuffix>phone</mat-icon>
+                @if (form.get('phone')?.touched && form.get('phone')?.errors?.['pattern']) {
+                    <mat-error>{{ 'ERROR.INVALID_PHONE' | translate }}</mat-error>
+                }
+                @if (form.get('phone')?.touched && form.get('phone')?.errors?.['maxlength']) {
+                    <mat-error>{{ 'ERROR.MAX_LENGTH' | translate }}</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="reg-field">
+                <mat-label>{{ 'LABEL.USERNAME' | translate }}</mat-label>
+                <input matInput formControlName="userName" />
+                <mat-icon matSuffix>person</mat-icon>
+                @if (form.get('userName')?.touched && form.get('userName')?.errors?.['required']) {
+                    <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+                }
+                @if (form.get('userName')?.touched && form.get('userName')?.errors?.['maxlength']) {
+                    <mat-error>{{ 'ERROR.MAX_LENGTH' | translate }}</mat-error>
+                }
+                @if (form.get('userName')?.touched && form.get('userName')?.errors?.['elementExists']) {
+                    <mat-error>{{ 'ERROR.USERNAME_TAKEN' | translate }}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <!-- Row 4: Password + Confirm password -->
+        <div class="reg-row">
+            <mat-form-field appearance="outline" class="reg-field">
+                <mat-label>{{ 'LABEL.PASSWORD' | translate }}</mat-label>
+                <input matInput type="password" formControlName="password" />
+                <mat-icon matSuffix>lock</mat-icon>
+                @if (form.get('password')?.touched && form.get('password')?.errors?.['required']) {
+                    <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+                }
+                @if (form.get('password')?.touched && form.get('password')?.errors?.['passwordStrength']) {
+                    <mat-error>{{ 'ERROR.PASSWORD_STRENGTH' | translate }}</mat-error>
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="reg-field">
+                <mat-label>{{ 'LABEL.CONFIRM_PASSWORD' | translate }}</mat-label>
+                <input matInput type="password" formControlName="confirmPassword" />
+                <mat-icon matSuffix>lock</mat-icon>
+                @if (form.get('confirmPassword')?.touched && form.get('confirmPassword')?.errors?.['required']) {
+                    <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+                }
+                @if (form.get('confirmPassword')?.touched && form.get('confirmPassword')?.errors?.['passwordMismatch']) {
+                    <mat-error>{{ 'ERROR.PASSWORDS_DO_NOT_MATCH' | translate }}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="reg-actions">
+    <button mat-stroked-button class="reg-btn reg-btn--secondary" mat-dialog-close>{{ 'BUTTON.CANCEL' | translate }}</button>
+    <button mat-flat-button class="reg-btn reg-btn--primary" [disabled]="form.invalid" (click)="onFormSubmit()">{{ 'BUTTON.REGISTER' | translate }}</button>
+</mat-dialog-actions>

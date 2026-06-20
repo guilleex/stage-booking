@@ -1,0 +1,194 @@
+// ─── Design tokens ───────────────────────────────────────────────────────────
+:host {
+  --c-accent:      #0f766e;
+  --c-accent-dark: #0b4f4a;
+  --c-bg-from:     #edfaf7;
+  --c-bg-to:       #d9f0ea;
+  --c-card:        #ffffff;
+  --c-text:        #0d2b27;
+  --c-muted:       #4d6b66;
+  --c-border:      rgba(11, 79, 74, 0.14);
+  --c-shadow:      0 8px 40px rgba(11, 79, 74, 0.18);
+  --radius-card:   1.5rem;
+  --radius-btn:    0.625rem;
+
+  display: block;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+// ─── Full-page shell ─────────────────────────────────────────────────────────
+.auth-shell {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 2rem 1.25rem;
+  padding-top:    max(2rem, env(safe-area-inset-top));
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  background:
+    linear-gradient(150deg, var(--c-bg-from) 0%, var(--c-bg-to) 100%);
+}
+
+// ─── Card ────────────────────────────────────────────────────────────────────
+.auth-card {
+  width: 100%;
+  max-width: 24rem;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--c-shadow);
+  padding: 2.25rem 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fade-up 320ms ease-out both;
+}
+
+// ─── Brand / logo area ───────────────────────────────────────────────────────
+.auth-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.auth-logo {
+  height: 4rem;
+  max-width: 9rem;
+  width: auto;
+  object-fit: contain;
+}
+
+// show full logo on desktop, mobile logo on small screens
+.auth-logo--mobile { display: none; }
+.auth-logo--desktop { display: block; }
+
+.auth-brand h1 {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+
+.auth-brand p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--c-muted);
+}
+
+.auth-brand p span {
+  margin-left: 0.3rem;
+  font-weight: 700;
+  color: var(--c-accent-dark);
+  cursor: pointer;
+}
+
+// ─── Form ────────────────────────────────────────────────────────────────────
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.full-width {
+  width: 100%;
+  // margin-bottom: 0;
+}
+
+.forgot-link {
+  align-self: flex-start;
+  color: var(--c-accent-dark) !important;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: -2rem;
+}
+
+.login-button {
+  width: 100%;
+  height: 2.75rem;
+  border-radius: var(--radius-btn) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+}
+
+// ─── Mobile (≤ 600 px) ───────────────────────────────────────────────────────
+@media (max-width: 600px) {
+  .auth-shell {
+    align-items: center;
+    padding: 1.25rem 1rem;
+    padding-top:    max(1.25rem, env(safe-area-inset-top));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  }
+
+  .auth-card {
+    max-width: 22rem;
+    padding: 1.5rem 1.25rem;
+    border-radius: 1.25rem;
+  }
+
+  .auth-logo--desktop { display: none; }
+  .auth-logo--mobile  { display: block; height: 6.25rem; }
+
+  .auth-brand h1 { font-size: 1.45rem; }
+}
+
+// ─── Very small (≤ 360 px) ───────────────────────────────────────────────────
+@media (max-width: 360px) {
+  .auth-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .auth-logo--mobile { height: 2.75rem; }
+  .auth-brand h1 { font-size: 1.3rem; }
+}
+
+// ─── Desktop (≥ 840 px) ──────────────────────────────────────────────────────
+@media (min-width: 840px) {
+  .auth-card {
+    max-width: 27rem;
+    padding: 2.75rem 2.5rem;
+    gap: 2rem;
+  }
+
+  .auth-brand {
+    gap: 0.85rem;
+
+    h1 {
+      margin-top: 1.25rem;
+    }
+  }
+
+  .auth-logo {
+    height: 4.5rem;
+    max-width: 17rem;
+  }
+
+  .auth-brand h1 { font-size: 1.5rem; }
+
+  .auth-form {
+    // gap: 1.5rem;
+  }
+
+  .forgot-link {
+    // margin-top: 0.5rem;
+  }
+}
+
+// ─── Animation ───────────────────────────────────────────────────────────────
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,1 +1,37 @@
-{}
+{
+    "LABEL": {
+        "LOGIN": "Prijavite se",
+        "NO_ACCOUNT": "Nemate nalog?",
+        "REGISTER": "Registrujte se",
+        "USERNAME": "Korisničko ime",
+        "PASSWORD": "Lozinka",
+        "REGISTRATION": "Registracija",
+        "FIRST_NAME": "Ime",
+        "LAST_NAME": "Prezime",
+        "EMAIL": "Email",
+        "PHONE_NUMBER": "Broj telefona",
+        "CONFIRM_PASSWORD": "Potvrda lozinke"
+    },
+    "ERROR": {
+        "REQUIRED_FIELD": "Ovo polje je obavezno",
+        "INVALID_CREDENTIALS": "Neispravno korisničko ime ili lozinka",
+        "INVALID_EMAIL": "Neispravna email adresa",
+        "INVALID_PHONE": "Neispravan broj telefona",
+        "PASSWORDS_DO_NOT_MATCH": "Lozinke se ne poklapaju",
+        "MAX_LENGTH": "Maksimalna dužina je {{max}} karaktera",
+        "MIN_LENGTH": "Minimalna dužina je {{min}} karaktera",
+        "PATTERN": "Neispravan format",
+        "USERNAME_TAKEN": "Korisničko ime je zauzeto",
+        "EMAIL_TAKEN": "Email adresa je zauzeta",
+        "PASSWORD_STRENGTH": "Lozinka mora imati najmanje 6 karaktera, sadržati najmanje jedno veliko slovo, jedno malo slovo i jedan broj",
+        "BAD_CREDENTIALS": "Neispravno korisničko ime ili lozinka",
+        "UNKNOWN_ERROR": "Došlo je do nepoznate greške. Molimo pokušajte ponovo kasnije."
+    },
+    "BUTTON": {
+        "SUBMIT": "Pošaljite",
+        "CANCEL": "Otkaži",
+        "LOGIN": "Prijavite se",
+        "FORGOT_PASSWORD": "Zaboravili ste lozinku?",
+        "REGISTER": "Registrujte se"
+    }
+}
