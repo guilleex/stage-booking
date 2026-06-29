@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
+import { adminRoutes } from '../../admin/admin.routes';
 
 
 export const mainRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'admin/dashboard',
         pathMatch: 'full'
     },
     {
-        path: 'admin/dashboard',
-        loadComponent: () => import('../../admin/dashboard/feature/dashboard/dashboard').then(m => m.Dashboard),
+        path: 'admin',
+        children: adminRoutes,
         data: {
-            title: 'Dashboard',
             roles: ['Admin']
         }
     },
@@ -31,4 +31,12 @@ export const mainRoutes: Routes = [
             roles: ['User']
         }
     },
+    {
+        path: 'my-account',
+        loadComponent: () => import('../../account/feature/account/account').then(m => m.Account),
+        data: {
+            title: 'My Account',
+            roles: ['Admin', 'Employee', 'User']
+        }
+    }
 ];

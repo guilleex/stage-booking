@@ -8,6 +8,12 @@ import { Subject, takeUntil } from 'rxjs';
 import { AuthModel, RefreshTokenApiResponse } from '../../auth/store/auth.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HasRoleDirective } from '../../shared/directives/has-role/has-role.directive';
+import { ShowOnMobileDirective } from '../../shared/directives/show-on-mobile/show-on-mobile.directive';
 
 @Component({
   selector: 'app-main',
@@ -19,6 +25,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     RouterOutlet,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTabsModule,
+    HasRoleDirective,
+    ShowOnMobileDirective,
   ]
 })
 export class Main {
@@ -113,10 +125,10 @@ export class Main {
 
   logout(): void {
     // Stop idle timer before logout to prevent Zone errors
-    this.idle.stop();
-    if (this.activeLogoutTimer) {
-      clearTimeout(this.activeLogoutTimer);
-    }
+    // this.idle.stop();
+    // if (this.activeLogoutTimer) {
+    //   clearTimeout(this.activeLogoutTimer);
+    // }
     this.authSrv.logout();
     this.router.navigateByUrl('/login');
   }

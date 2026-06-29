@@ -1,1 +1,106 @@
- <router-outlet />
+<!-- --- DESKTOP: sidenav layout --- -->
+<ng-template appShowOnMobile [appShowOnMobileValue]="false">
+  <mat-sidenav-container class="shell">
+
+    <mat-sidenav mode="side" opened class="sidebar">
+
+      <div class="sidebar__brand">
+        <img src="logo.png" alt="Logo" class="sidebar__logo" />
+      </div>
+
+      <mat-nav-list class="sidebar__nav">
+
+        <a *appHasRole="['Admin']" mat-list-item
+           routerLink="/admin/dashboard" routerLinkActive #dashRla="routerLinkActive"
+           [activated]="dashRla.isActive">
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+
+        <a *appHasRole="['Admin']" mat-list-item
+           routerLink="/admin/employees" routerLinkActive #empRla="routerLinkActive"
+           [activated]="empRla.isActive">
+          <mat-icon matListItemIcon>badge</mat-icon>
+          <span matListItemTitle>Employees</span>
+        </a>
+
+        <a *appHasRole="['Admin']" mat-list-item
+           routerLink="/admin/users" routerLinkActive #usersRla="routerLinkActive"
+           [activated]="usersRla.isActive">
+          <mat-icon matListItemIcon>group</mat-icon>
+          <span matListItemTitle>Users</span>
+        </a>
+
+      </mat-nav-list>
+
+      <div class="sidebar__footer">
+        <button matIconButton (click)="logout()" title="Logout">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+      <mat-toolbar class="topbar">
+        <span class="topbar__title">VD System</span>
+        <span class="topbar__spacer"></span>
+        <span class="topbar__user">{{ user()?.firstName }} {{ user()?.lastName }}</span>
+      </mat-toolbar>
+      <div class="page">
+        <router-outlet />
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</ng-template>
+
+<!-- --- MOBILE: toolbar + content + bottom tabs --- -->
+<ng-template appShowOnMobile [appShowOnMobileValue]="true">
+
+  <div class="mobile-shell">
+
+    <mat-toolbar class="mobile-header">
+      <img src="logo.png" alt="Logo" class="mobile-header__logo" />
+    </mat-toolbar>
+
+    <div class="page">
+      <router-outlet />
+    </div>
+
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="bottom-nav">
+
+      <a *appHasRole="['Admin']" mat-tab-link
+         routerLink="/admin/dashboard" routerLinkActive #mobDashRla="routerLinkActive"
+         [active]="mobDashRla.isActive">
+        <mat-icon>dashboard</mat-icon>
+        <span class="bottom-nav__label">Dashboard</span>
+      </a>
+
+      <a *appHasRole="['Admin']" mat-tab-link
+         routerLink="/admin/employees" routerLinkActive #mobEmpRla="routerLinkActive"
+         [active]="mobEmpRla.isActive">
+        <mat-icon>badge</mat-icon>
+        <span class="bottom-nav__label">Employees</span>
+      </a>
+
+      <a *appHasRole="['Admin']" mat-tab-link
+         routerLink="/admin/users" routerLinkActive #mobUsersRla="routerLinkActive"
+         [active]="mobUsersRla.isActive">
+        <mat-icon>group</mat-icon>
+        <span class="bottom-nav__label">Users</span>
+      </a>
+
+      <a *appHasRole="['Admin', 'Employee', 'User']" mat-tab-link
+         routerLink="/my-account" routerLinkActive #mobAccountRla="routerLinkActive"
+         [active]="mobAccountRla.isActive">
+        <mat-icon>account_circle</mat-icon>
+        <span class="bottom-nav__label">MyAccount</span>
+      </a>
+
+    </nav>
+    <mat-tab-nav-panel #tabPanel />
+
+  </div>
+
+</ng-template>

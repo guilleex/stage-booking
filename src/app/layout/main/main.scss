@@ -1,0 +1,12 @@
+@use '@angular/material' as mat;
+
+.mat-mdc-tab-nav-bar .mat-mdc-tab-header-ink-bar {
+  top: 0 !important;
+  bottom: auto !important;
+}
+
+/* Optional: adjust pagination arrows if nav bar scrolls */
+.mat-mdc-tab-nav-bar .mat-mdc-tab-header-pagination {
+  top: 0;
+  bottom: auto;
+}
