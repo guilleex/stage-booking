@@ -1,4 +1,8 @@
 {
+    "PAGE": {
+        "Home": "Početna",
+        "MyAccount": "Moj nalog"
+    },
     "LABEL": {
         "LOGIN": "Prijavite se",
         "NO_ACCOUNT": "Nemate nalog?",
@@ -10,7 +14,19 @@
         "LAST_NAME": "Prezime",
         "EMAIL": "Email",
         "PHONE_NUMBER": "Broj telefona",
-        "CONFIRM_PASSWORD": "Potvrda lozinke"
+        "CONFIRM_PASSWORD": "Potvrda lozinke",
+        "START_DATE": "Od",
+        "END_DATE": "Do",
+        "CITY": "Grad",
+        "MUNICIPALITY": "Opština",
+        "VENUE": "Lokacija",
+        "COMPANY_NAME": "Kompanija",
+        "CONTACT_ADDRESS": "Adresa",
+        "CONTACT_PHONE": "Telefon",
+        "EVENT_DESCRIPTION": "Opis događaja",
+        "RESERVATION": "Rezervacija Termina",
+        "BOOKINGS": "Moji termini",
+        "NO_BOOKINGS": "Trenutno nemate zakazanih termina"
     },
     "ERROR": {
         "REQUIRED_FIELD": "Ovo polje je obavezno",
@@ -27,11 +43,42 @@
         "BAD_CREDENTIALS": "Neispravno korisničko ime ili lozinka",
         "UNKNOWN_ERROR": "Došlo je do nepoznate greške. Molimo pokušajte ponovo kasnije."
     },
+    "MESSAGE": {
+        "STATUS_CONFIRMED": "Status prijave: Potvrđeno",
+        "STATUS_PENDING": "Status prijave: Na čekanju",
+        "STATUS_REJECTED": "Status prijave: Odbijeno",
+        "BOOKING_REQUEST_SUBMITTED": "Vaš zahtev za rezervaciju je uspešno poslat. Bićete obavešteni o statusu rezervacije.",
+        "DELETE_BOOKING": "Obriši rezervaciju"
+    },
     "BUTTON": {
         "SUBMIT": "Pošaljite",
         "CANCEL": "Otkaži",
         "LOGIN": "Prijavite se",
         "FORGOT_PASSWORD": "Zaboravili ste lozinku?",
         "REGISTER": "Registrujte se"
+    },
+    "HINT": {
+        "EMAIL": "Unesite email adresu",
+        "PHONE_NUMBER": "Unesite broj telefona",
+        "VENUE": "Lokacija događaja (sala, trg, prostor, itd.)",
+        "COMPANY_NAME": "Unesite naziv kompanije",
+        "CONTACT_ADDRESS": "Unesite adresu za kontakt",
+        "CONTACT_PHONE": "Broj telefona za kontakt",
+        "EVENT_DESCRIPTION": "Detaljan opis događaja"
+    },
+    "PROPERTY": {
+        "USERNAME": "Korisničko ime",
+        "PASSWORD": "Lozinka",
+        "FIRST_NAME": "Ime",
+        "LAST_NAME": "Prezime",
+        "EMAIL": "Email",
+        "PHONE_NUMBER": "Broj telefona",
+        "START_DATE": "Od",
+        "END_DATE": "Do",
+        "CITY": "Grad",
+        "VENUE": "Lokacija",
+        "CONTACT_PHONE": "Telefon",
+        "EVENT_DESCRIPTION": "Opis događaja",
+        "STATUS": "Status"
     }
 }

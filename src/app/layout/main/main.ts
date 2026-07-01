@@ -14,6 +14,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HasRoleDirective } from '../../shared/directives/has-role/has-role.directive';
 import { ShowOnMobileDirective } from '../../shared/directives/show-on-mobile/show-on-mobile.directive';
+import { TranslatePipe } from '@ngx-translate/core';
+import { PageTitleService } from '../../shared/services/page-title/page-title.service';
 
 @Component({
   selector: 'app-main',
@@ -29,6 +31,7 @@ import { ShowOnMobileDirective } from '../../shared/directives/show-on-mobile/sh
     MatSidenavModule,
     MatListModule,
     MatTabsModule,
+    TranslatePipe,
     HasRoleDirective,
     ShowOnMobileDirective,
   ]
@@ -40,12 +43,14 @@ export class Main {
   private readonly idle = inject(IdleService);
   private readonly i18n = inject(I18nService);
   private readonly toastSrv = inject(ToastService);
+  private readonly pageTitleSrv = inject(PageTitleService);
 
   user = this.authSrv.user;
   private previousAuthState = false;
   private activeLogoutTimer: any;
   private readonly destroy$ = new Subject<void>();
   language = this.i18n.language;
+  pageTitle = this.pageTitleSrv.pageTitle;
 
   constructor() {        
     this.initializeComponent();

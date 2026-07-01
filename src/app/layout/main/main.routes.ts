@@ -35,7 +35,7 @@ export const mainRoutes: Routes = [
         path: 'my-account',
         loadComponent: () => import('../../account/feature/account/account').then(m => m.Account),
         data: {
-            title: 'My Account',
+            title: 'MyAccount',
             roles: ['Admin', 'Employee', 'User']
         }
     }

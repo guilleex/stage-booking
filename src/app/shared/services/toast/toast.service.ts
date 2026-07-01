@@ -22,6 +22,8 @@ export class ToastService {
    */
   onSuccess(message: string): void {
 
+    console.log('Displaying success toast:', message);
+
     this.toastr.success(
       message, 
       '',

@@ -1,0 +1,87 @@
+@use '@angular/material' as mat;
+// @use './m3-theme.scss';
+// @use './theme-colors' as theme;
+// @use './button-colors';
+
+@include mat.core();
+
+// // Direct CSS override for button border radius (guaranteed to work)
+// .mat-mdc-button,
+// .mat-mdc-outlined-button,
+// .mat-mdc-raised-button,
+// .mat-mdc-unelevated-button {
+//   border-radius: 4px !important;
+// }
+
+// .mat-mdc-icon-button {
+//   border-radius: 50% !important;
+// }
+
+// .mdc-button {
+//   border-radius: 4px !important;
+// }
+
+// // For outlined buttons specifically
+// .mat-mdc-outlined-button .mdc-button__outline {
+//   border-radius: 4px !important;
+// }
+
+// // For FAB buttons
+// .mat-mdc-fab,
+// .mat-mdc-mini-fab {
+//   border-radius: 50% !important;
+// }
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+@media screen and (max-width: 839.98px) {
+    
+    // Custom larger buttons for mobile
+    .mat-mdc-button,
+    .mat-mdc-outlined-button,
+    .mat-mdc-raised-button,
+    .mat-mdc-unelevated-button {
+        min-height: 48px !important;
+        padding: 12px 24px !important;
+        font-size: 16px !important;
+    }
+    
+    .mat-mdc-fab {
+        width: 64px !important;
+        height: 64px !important;
+    }
+    
+}
+
+.export-buttons, .csv-upload-button {
+
+    // .mat-mdc-button,
+    // .mat-mdc-outlined-button,
+    // .mat-mdc-raised-button,
+    // .mat-mdc-unelevated-button {
+    //     min-height: initial !important;
+    //     padding: initial 24px !important;
+    //     font-size: initial !important;
+    // }
+    
+    // @include mat.button-density(-1);
+}
+
+@media screen and (min-width: 840px) {
+
+    // Apply form field density directly
+    .mat-mdc-form-field {
+        @include mat.form-field-density(-4);
+    }
+
+    // @include mat.color-variants-backwards-compatibility(m3-theme.$dark-theme);
+    // @include mat.icon-density(-5);
+    // @include mat.icon-button-density(-3);
+    // @include mat.checkbox-density(-3);
+    @include mat.button-density(-1);
+    
+}

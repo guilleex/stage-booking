@@ -1,0 +1,105 @@
+<section class="">
+
+  <header class="bookings-card__header">
+    <mat-icon class="bookings-card__icon">event_note</mat-icon>
+    <h1>{{ 'LABEL.BOOKINGS' | translate }}</h1>
+  </header>
+
+  @if (bookings().length) {
+    <div class="bookings-card__table-wrap">
+      <table mat-table [dataSource]="bookings()" multiTemplateDataRows class="bookings-table">
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>
+            <!-- <mat-icon class="col-icon">info</mat-icon> {{ 'PROPERTY.STATUS' | translate }} -->
+          </th>
+          <td mat-cell *matCellDef="let element">
+            @switch (element.status) {
+              @case('confirmed') {
+                <mat-icon class="confirmed" style="color: #2f74c4;" #tooltip="matTooltip" matTooltip="{{ 'MESSAGE.STATUS_CONFIRMED' | translate }}">check_circle</mat-icon>
+              }
+              @case('pending') {
+                <mat-icon class="pending" style="color: #d8a21b;" #tooltip="matTooltip" matTooltip="{{ 'MESSAGE.STATUS_PENDING' | translate }}">pending</mat-icon>
+              }
+              @case('rejected') {
+                <mat-icon class="rejected" style="color: #d72a67;" #tooltip="matTooltip" matTooltip="{{ 'MESSAGE.STATUS_REJECTED' | translate }}">cancel</mat-icon>
+              }
+            }
+          </td>
+        </ng-container>
+
+        <!-- Start Date Column -->
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon class="col-icon">event</mat-icon> {{ 'PROPERTY.START_DATE' | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.startDate | date }} </td>
+        </ng-container>
+
+        <!-- End Date Column -->
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon class="col-icon">event_available</mat-icon> {{ 'PROPERTY.END_DATE' | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.endDate | date }} </td>
+        </ng-container>
+
+        <!-- City Column -->
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon class="col-icon">location_city</mat-icon> {{ 'PROPERTY.CITY' | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+        </ng-container>
+
+        <!-- Venue Column -->
+        <ng-container matColumnDef="venue">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon class="col-icon">stadium</mat-icon> {{ 'PROPERTY.VENUE' | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.venue}} </td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="contactPhone">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-icon class="col-icon">call</mat-icon> {{ 'PROPERTY.CONTACT_PHONE' | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.contactPhone}} </td>
+        </ng-container>
+
+        <!-- Buttons Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button class="row-action" (click)="onDeleteBooking(element.id)" [disabled]="element.status === 'confirmed'" matTooltip="{{ 'MESSAGE.DELETE_BOOKING' | translate }}">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Secondary Column -->
+        <ng-container matColumnDef="secondary">
+          <td mat-cell [attr.colspan]="displayedColumns().length" *matCellDef="let element" class="secondary-cell">
+            <div class="secondary-cell__inner">
+              <mat-icon class="secondary-cell__icon">notes</mat-icon>
+              <p>{{element.eventDescription}}</p>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns();" class="data-row"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['secondary'];" class="secondary-row"></tr>
+
+      </table>
+    </div>
+  } @else {
+    <div class="bookings-card__empty">
+      <mat-icon>event_busy</mat-icon>
+      <p>{{ 'LABEL.NO_BOOKINGS' | translate }}</p>
+    </div>
+  }
+
+</section>

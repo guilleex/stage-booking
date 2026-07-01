@@ -1,7 +1,12 @@
 {
+    "PAGE": {
+        "HOME": "Home"
+    },
     "LABEL": {
         "LOGIN": "Login",
         "NO_ACCOUNT": "Don't have an account?",
-        "REGISTER": "Register"
+        "REGISTER": "Register",
+        "BOOKINGS": "My Bookings",
+        "NO_BOOKINGS": "No bookings yet"
     }
 }

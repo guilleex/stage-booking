@@ -31,21 +31,40 @@
           <span matListItemTitle>Users</span>
         </a>
 
+        <a *appHasRole="['User']" mat-list-item
+            routerLink="/user/home" routerLinkActive #userHomeRla="routerLinkActive"
+            [activated]="userHomeRla.isActive">
+          <mat-icon matListItemIcon>home</mat-icon>
+          <span matListItemTitle>{{ 'PAGE.Home' | translate }}</span>
+        </a>
+
+        <a *appHasRole="['Admin', 'Employee', 'User']" mat-list-item
+           routerLink="/my-account" routerLinkActive #accountRla="routerLinkActive"
+           [activated]="accountRla.isActive">
+          <mat-icon matListItemIcon>account_circle</mat-icon>
+          <span matListItemTitle>{{ 'PAGE.MyAccount' | translate }}</span>
+        </a>
+
       </mat-nav-list>
 
-      <div class="sidebar__footer">
+      <!-- <div class="sidebar__footer">
         <button matIconButton (click)="logout()" title="Logout">
           <mat-icon>logout</mat-icon>
         </button>
-      </div>
+      </div> -->
 
     </mat-sidenav>
 
     <mat-sidenav-content class="content">
       <mat-toolbar class="topbar">
-        <span class="topbar__title">VD System</span>
-        <span class="topbar__spacer"></span>
-        <span class="topbar__user">{{ user()?.firstName }} {{ user()?.lastName }}</span>
+        <span class="topbar__title">{{ `PAGE.${pageTitle()}` | translate }}</span>
+        <div class="topbar__right">
+          <mat-icon>person_outline</mat-icon>
+          <span class="topbar__user">{{ user()?.firstName }} {{ user()?.lastName }}</span>
+          <button matIconButton (click)="logout()" title="Logout">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </div>
       </mat-toolbar>
       <div class="page">
         <router-outlet />
@@ -89,6 +108,13 @@
          [active]="mobUsersRla.isActive">
         <mat-icon>group</mat-icon>
         <span class="bottom-nav__label">Users</span>
+      </a>
+
+      <a *appHasRole="['User']" mat-tab-link
+          routerLink="/user/home" routerLinkActive #mobUserHomeRla="routerLinkActive"
+          [active]="mobUserHomeRla.isActive">
+        <mat-icon>home</mat-icon>
+        <span matListItemTitle>{{ 'PAGE.Home' | translate }}</span>
       </a>
 
       <a *appHasRole="['Admin', 'Employee', 'User']" mat-tab-link

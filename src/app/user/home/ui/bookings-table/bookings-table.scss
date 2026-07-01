@@ -1,0 +1,227 @@
+@use '@angular/material' as mat;
+
+:host {
+    display: block;
+    flex: 1;
+    min-width: 0;
+
+    @include mat.table-overrides((
+        header-container-height: 3rem,
+        header-headline-color: #22528b,
+        row-item-container-height: 3.25rem,
+    ));
+
+}
+
+// ─── Card wrapper ───────────────────────────────────────────────────────────
+.bookings-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+}
+
+.bookings-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #eef1f5;
+
+    h1 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #22528b;
+        margin: 0;
+    }
+}
+
+.bookings-card__icon {
+    color: #2563eb;
+}
+
+.bookings-card__table-wrap {
+    overflow-x: auto;
+    padding: 0 1.5rem;
+}
+
+// ─── Table ──────────────────────────────────────────────────────────────────
+.bookings-table {
+    width: 100%;
+    table-layout: fixed;
+    background: transparent;
+}
+
+.mat-column-startDate,
+.mat-column-endDate,
+.mat-column-city,
+.mat-column-venue {
+    width: 23%;
+}
+
+.mat-column-status,
+.mat-column-actions {
+    width: 3rem;
+}
+
+.mat-column-actions {
+    padding: 0 !important;
+}
+
+th.mat-mdc-header-cell {
+    color: #22528b;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: #f8fafc;
+    white-space: nowrap;
+    border-bottom: none;
+}
+
+.col-icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    margin-right: 0.25rem;
+    color: #94a3b8;
+}
+
+.mat-column-status {
+    text-align: center;
+    padding: 0 !important;
+
+    mat-icon {
+        vertical-align: middle;
+    }
+}
+
+td.mat-mdc-cell {
+    color: #334155;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.data-row {
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background: #f5f8ff;
+    }
+}
+
+.data-row td.mat-mdc-cell {
+    border-top: 1px solid #6f7979;
+    border-bottom: 1px solid #eef1f5;
+}
+
+.row-action {
+    color: #94a3b8;
+
+    &:hover {
+        color: #d72a67;
+    }
+}
+
+// ─── Secondary row (description) ───────────────────────────────────────────
+.secondary-row td.mat-mdc-cell {
+    border: none;
+    padding: 0 1rem .7rem;
+}
+
+.secondary-cell {
+    width: 100%;
+
+    p {
+        margin: 0;
+    }
+}
+
+.secondary-cell__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+// Higher specificity needed to beat `td.mat-mdc-cell` truncation rules
+td.mat-mdc-cell.secondary-cell {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: break-word;
+}
+
+.secondary-cell__icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.1rem;
+    color: #cbd5e1;
+    flex-shrink: 0;
+}
+
+// ─── Third row (status) ────────────────────────────────────────────────────
+.third-row td.mat-mdc-cell {
+    border: none;
+    padding-top: 0.35rem;
+    padding-bottom: 1rem;
+}
+
+.status-cell {
+    width: 100%;
+}
+
+.status-chip {
+    display: inline-block;
+    padding: 0.2rem 0;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #0f766e;
+    background: rgba(15, 118, 110, 0.12);
+    width: 100%;
+    text-align: center;
+}
+
+// ─── Empty state ────────────────────────────────────────────────────────────
+.bookings-card__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 3rem 1.5rem;
+    color: #94a3b8;
+
+    mat-icon {
+        font-size: 2.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+}
+
+// ─── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 599.98px) {
+    .bookings-card__header {
+        padding: 1rem;
+    }
+
+    th.mat-mdc-header-cell,
+    td.mat-mdc-cell {
+        padding: 0 0.75rem;
+    }
+}
+

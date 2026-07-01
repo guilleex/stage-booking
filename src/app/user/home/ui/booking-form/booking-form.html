@@ -1,0 +1,104 @@
+<h1>{{ 'LABEL.RESERVATION' | translate }}</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
+
+    <mat-form-field hideRequiredMarker="false">
+        <mat-label>{{ 'LABEL.START_DATE' | translate }}</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+        @if (form.get('startDate')?.hasError('required')) {
+            <mat-error>
+                {{ 'ERROR.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker="false">
+        <mat-label>{{ 'LABEL.END_DATE' | translate }}</mat-label>
+        <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+        @if (form.get('endDate')?.hasError('required')) {
+            <mat-error>
+                {{ 'ERROR.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker="false">
+
+        <mat-label>{{ 'LABEL.CITY' | translate }}</mat-label>
+
+        <input type="text"
+                matInput
+                formControlName="city"
+                [matAutocomplete]="auto">
+
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onCitySelected($event)"(opened)="onAutocompletePanelOpened()" (closed)="onAutocompletePanelClosed()">
+            @for (city of filteredCities(); track city.zip) {
+                <mat-option [value]="city.city">{{ city.city }}</mat-option>
+            }
+        </mat-autocomplete>
+
+        @if (form.get('city')?.hasError('required')) {
+            <mat-error>
+                {{ 'ERROR.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        }
+
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker="false">
+        <mat-label>{{ 'LABEL.VENUE' | translate }}</mat-label>
+        <input matInput formControlName="venue" />
+        <mat-hint align="start">{{ 'HINT.VENUE' | translate }}</mat-hint>
+        @if (form.get('venue')?.hasError('required')) {
+            <mat-error>
+                {{ 'ERROR.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        }
+        @if (form.get('venue')?.hasError('maxlength')) {
+            <mat-error>
+                {{ 'ERROR.MAX_LENGTH' | translate }}
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>{{ 'LABEL.CONTACT_PHONE' | translate }}</mat-label>
+        <input matInput formControlName="contactPhone" />
+        <mat-hint align="start">{{ 'HINT.CONTACT_PHONE' | translate }}</mat-hint>
+        @if (form.get('contactPhone')?.hasError('pattern')) {
+            <mat-error>
+                {{ 'ERROR.INVALID_PHONE' | translate }}
+            </mat-error>
+        }
+        @if (form.get('contactPhone')?.hasError('minlength')) {
+            <mat-error>
+                {{ 'ERROR.MIN_LENGTH' | translate }}
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker="false">
+        <mat-label>{{ 'LABEL.EVENT_DESCRIPTION' | translate }}</mat-label>
+        <textarea matInput formControlName="eventDescription" rows="7"></textarea>
+        <mat-hint align="start">{{ 'HINT.EVENT_DESCRIPTION' | translate }}</mat-hint>
+        @if (form.get('eventDescription')?.hasError('required')) {
+            <mat-error>
+                {{ 'ERROR.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        }
+        @if (form.get('eventDescription')?.hasError('maxlength')) {
+            <mat-error>
+                {{ 'ERROR.MAX_LENGTH' | translate }}
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        {{ 'BUTTON.SUBMIT' | translate }}
+    </button>
+
+</form>
