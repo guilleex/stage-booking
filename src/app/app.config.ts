@@ -14,6 +14,8 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { I18nService } from './shared/services/i18n/i18n.service';
 import { provideToastr } from 'ngx-toastr';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { PaginatorIntlService } from './shared/services/i18n/paginator-intl.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -62,6 +64,7 @@ export const appConfig: ApplicationConfig = {
     provideNativeDateAdapter(),
     DateLocaleService, // Ensure DateLocaleService is initialized
     DatePipe,
+    { provide: MatPaginatorIntl, useClass: PaginatorIntlService },
     provideTranslateService({ lang: 'en' }),
     provideToastr()
   ],

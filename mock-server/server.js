@@ -80,6 +80,67 @@ const statusDays = [
   { status: 'Accepted', date: '2026-07-12' }
 ];
 
+    // id: string;
+    // email: string;
+    // userName: string;
+    // firstName: string;
+    // lastName: string;
+    // fullName: string;
+    // phone: string;
+    // active: boolean;
+    // roleId: number;
+    // role: string;
+
+const employees = [
+  {
+    id: 1,
+    email: 'admin@stage.com',
+    username: 'admin',
+    firstName: 'Admin',
+    lastName: 'User',
+    phone: '0601234567',
+    active: true,
+    roleId: 1,
+    role: 'Admin',
+  },
+  {
+    id: 2,
+    email: 'user@stage.com',
+    username: 'user',
+    firstName: 'Regular',
+    lastName: 'User',
+    phone: '0607654321',
+    active: true,
+    roleId: 2,
+    role: 'User',
+  }
+]
+
+const listOfAllUsers = [
+  {
+    id: 1,
+    email: 'admin@stage.com',
+    username: 'admin',
+    firstName: 'Admin',
+    lastName: 'User',
+    phone: '0601234567',
+    active: true,
+    roleId: 1,
+    role: 'Admin',
+  },
+  {
+    id: 3,
+    email: '',
+    username: 'employee1',
+    firstName: 'Employee',
+    lastName: 'One',
+    phone: '0601111111',
+    active: true,
+    roleId: 3,
+    role: 'Employee'
+  }
+];
+
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -175,6 +236,18 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.method === 'GET' && req.url === '/api/employee/getEmployees') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(employees));
+    return;
+  }
+
+  if (req.method === 'GET' && req.url === '/api/user/getAllUsers') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(listOfAllUsers));
+    return;
+  }
+
   res.writeHead(404, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ message: 'No route for ' + req.method + ' ' + req.url }));
 });
@@ -189,4 +262,6 @@ server.listen(3000, () => {
   console.log('    GET  /api/users/:id');
   console.log('    GET  /api/bookings/getAllRequests');
   console.log('    GET  /api/bookings/getDaysWithStatus');
+  console.log('    GET  /api/employee/getEmployees');
+  console.log('    GET  /api/user/getAllUsers');
 });

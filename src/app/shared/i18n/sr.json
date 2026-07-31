@@ -66,6 +66,28 @@
         "REQUEST_DETAILS": "Podaci zahteva",
         "DATE_RANGE": "Period"
     },
+    "EMPLOYEE": {
+        "SEARCH": "Pretraži zaposlene",
+        "SEARCH_HINT": "Ime, korisničko ime, email ili uloga",
+        "CLEAR_SEARCH": "Obriši pretragu",
+        "CREATE": "Novi zaposleni",
+        "ACTIVE": "Aktivan",
+        "INACTIVE": "Neaktivan",
+        "ACTIONS": "Akcije",
+        "EDIT": "Izmeni",
+        "CHANGE_PASSWORD": "Promeni lozinku",
+        "PASSWORD": "Lozinka",
+        "DELETE": "Obriši",
+        "NO_RESULTS": "Nema zaposlenih koji odgovaraju pretrazi"
+    },
+    "PAGINATOR": {
+        "ITEMS_PER_PAGE": "Stavki po stranici",
+        "NEXT_PAGE": "Sledeća stranica",
+        "PREVIOUS_PAGE": "Prethodna stranica",
+        "FIRST_PAGE": "Prva stranica",
+        "LAST_PAGE": "Poslednja stranica",
+        "RANGE": "{{start}}–{{end}} od {{length}}"
+    },
     "BUTTON": {
         "SUBMIT": "Pošaljite",
         "CANCEL": "Otkaži",
@@ -98,6 +120,8 @@
         "CONTACT_PHONE": "Telefon",
         "EVENT_DESCRIPTION": "Opis događaja",
         "STATUS": "Status",
-        "FULL_NAME": "Korisnik"
+        "ROLE": "Uloga",
+        "FULL_NAME": "Korisnik",
+        "EMPLOYEE_FULL_NAME": "Ime i prezime"
     }
 }

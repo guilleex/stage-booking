@@ -8,12 +8,39 @@
 		"REQUEST_DETAILS": "Request details",
 		"DATE_RANGE": "Date range"
 	},
+	"EMPLOYEE": {
+		"SEARCH": "Search employees",
+		"SEARCH_HINT": "Name, username, email or role",
+		"CLEAR_SEARCH": "Clear search",
+		"CREATE": "New employee",
+		"ACTIVE": "Active",
+		"INACTIVE": "Inactive",
+		"ACTIONS": "Actions",
+		"EDIT": "Edit",
+		"CHANGE_PASSWORD": "Change password",
+		"PASSWORD": "Password",
+		"DELETE": "Delete",
+		"NO_RESULTS": "No employees match your search"
+	},
+	"PAGINATOR": {
+		"ITEMS_PER_PAGE": "Items per page",
+		"NEXT_PAGE": "Next page",
+		"PREVIOUS_PAGE": "Previous page",
+		"FIRST_PAGE": "First page",
+		"LAST_PAGE": "Last page",
+		"RANGE": "{{start}}–{{end}} of {{length}}"
+	},
 	"BUTTON": {
 		"CANCEL": "Cancel",
 		"CONFIRM": "Accept",
 		"REJECT": "Reject"
 	},
 	"PROPERTY": {
+		"USERNAME": "Username",
+		"EMAIL": "Email",
+		"PHONE_NUMBER": "Phone number",
+		"STATUS": "Status",
+		"ROLE": "Role",
 		"FULL_NAME": "Customer",
 		"VENUE": "Venue",
 		"CONTACT_PHONE": "Phone",
