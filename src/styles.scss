@@ -82,50 +82,6 @@ body {
   overflow: hidden !important;
 }
 
-.sidebar {
-
-  width: 16.5rem !important;
-  .sidebar__brand {
-
-    padding: 1.5rem 1.5rem 0.75rem;
-    border-right: 1px solid rgba(134, 42, 42, 0.2);
-
-    .sidebar__logo {
-      height: 2.5rem;
-      object-fit: contain;
-    }
-  }
-
-  .sidebar__nav {
-    flex: 1;
-    padding: 1.75rem 0 !important;
-  }
-
-  @include mat.sidenav-overrides((
-    content-text-color: red,
-    container-shape: 0,
-    container-width: 300px,
-  ));
-
-  .mdc-list {
-    padding: 0;
-    border-top: 1px solid rgba(134, 42, 42, 0.2);
-    border-right: 1px solid rgba(134, 42, 42, 0.2);
-    border-bottom: 1px solid rgba(134, 42, 42, 0.2);
-
-    .mdc-list-item {
-      width: 90%;
-      margin: 0 auto;
-    }
-  }
-
-  .sidebar__footer {
-    border-right: 1px solid rgba(134, 42, 42, 0.2);
-    padding: 0.75rem .5rem !important;
-  }
-
-}
-
 .mobile-shell {
   display: flex;
   flex-direction: column;
@@ -163,39 +119,27 @@ body {
   .mat-mdc-tab-link .mdc-tab-indicator {
     position: absolute;
     top: 0;
-    bottom: auto; /* Disables the default bottom alignment */
+    bottom: auto;
     height: var(--mdc-tab-indicator-active-indicator-height, 2px);
   }
 
-  /* Adjust the internal flexing alignment so the line renders on top */
   .mat-mdc-tab-link .mdc-tab-indicator__content--underline {
     align-self: flex-start !important;
+    border-color: #2563eb;
   }
 
   .mat-mdc-tab-link.mdc-tab .mdc-tab__text-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    width: 100%;
   }
 
   .mdc-tab {
-    padding: 0;
     flex: 1;
+    padding: 0;
 
     &.mdc-tab--active {
-      background-color: #cce8e7;
+      background-color: #eff6ff;
     }
-    // .mat-mdc-tab-header.mat-mdc-tab-nav-bar-stretch-tabs .mat-mdc-tab-link {
-    //   flex: 1;
-    // }
-
   }
-
-
-  background-color: #fdfdfe;  
-  border-top: 1px solid rgba(134, 42, 42, 0.2);
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 // Sidenav container background

@@ -59,9 +59,11 @@
       <mat-toolbar class="topbar">
         <span class="topbar__title">{{ `PAGE.${pageTitle()}` | translate }}</span>
         <div class="topbar__right">
-          <mat-icon>person_outline</mat-icon>
-          <span class="topbar__user">{{ user()?.firstName }} {{ user()?.lastName }}</span>
-          <button matIconButton (click)="logout()" title="Logout">
+          <div class="topbar__identity">
+            <span class="topbar__avatar"><mat-icon>person_outline</mat-icon></span>
+            <span class="topbar__user">{{ user()?.firstName }} {{ user()?.lastName }}</span>
+          </div>
+          <button matIconButton class="topbar__logout" (click)="logout()" title="Logout">
             <mat-icon>logout</mat-icon>
           </button>
         </div>
@@ -81,6 +83,10 @@
 
     <mat-toolbar class="mobile-header">
       <img src="logo.png" alt="Logo" class="mobile-header__logo" />
+      <span class="mobile-header__title">{{ `PAGE.${pageTitle()}` | translate }}</span>
+      <button matIconButton class="mobile-header__logout" (click)="logout()" title="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
     </mat-toolbar>
 
     <div class="page">
@@ -92,36 +98,46 @@
       <a *appHasRole="['Admin']" mat-tab-link
          routerLink="/admin/dashboard" routerLinkActive #mobDashRla="routerLinkActive"
          [active]="mobDashRla.isActive">
-        <mat-icon>dashboard</mat-icon>
-        <span class="bottom-nav__label">Dashboard</span>
+        <span class="bottom-nav__content">
+          <mat-icon>dashboard</mat-icon>
+          <span class="bottom-nav__label">{{ 'PAGE.DASHBOARD' | translate }}</span>
+        </span>
       </a>
 
       <a *appHasRole="['Admin']" mat-tab-link
          routerLink="/admin/employees" routerLinkActive #mobEmpRla="routerLinkActive"
          [active]="mobEmpRla.isActive">
-        <mat-icon>badge</mat-icon>
-        <span class="bottom-nav__label">Employees</span>
+        <span class="bottom-nav__content">
+          <mat-icon>badge</mat-icon>
+          <span class="bottom-nav__label">{{ 'PAGE.EMPLOYEES' | translate }}</span>
+        </span>
       </a>
 
       <a *appHasRole="['Admin']" mat-tab-link
          routerLink="/admin/users" routerLinkActive #mobUsersRla="routerLinkActive"
          [active]="mobUsersRla.isActive">
-        <mat-icon>group</mat-icon>
-        <span class="bottom-nav__label">Users</span>
+        <span class="bottom-nav__content">
+          <mat-icon>group</mat-icon>
+          <span class="bottom-nav__label">{{ 'PAGE.USERS' | translate }}</span>
+        </span>
       </a>
 
       <a *appHasRole="['User']" mat-tab-link
           routerLink="/user/home" routerLinkActive #mobUserHomeRla="routerLinkActive"
           [active]="mobUserHomeRla.isActive">
-        <mat-icon>home</mat-icon>
-        <span matListItemTitle>{{ 'PAGE.HOME' | translate }}</span>
+        <span class="bottom-nav__content">
+          <mat-icon>home</mat-icon>
+          <span class="bottom-nav__label">{{ 'PAGE.HOME' | translate }}</span>
+        </span>
       </a>
 
       <a *appHasRole="['Admin', 'Employee', 'User']" mat-tab-link
          routerLink="/my-account" routerLinkActive #mobAccountRla="routerLinkActive"
          [active]="mobAccountRla.isActive">
-        <mat-icon>account_circle</mat-icon>
-        <span class="bottom-nav__label">MyAccount</span>
+        <span class="bottom-nav__content">
+          <mat-icon>account_circle</mat-icon>
+          <span class="bottom-nav__label">{{ 'PAGE.MY_ACCOUNT' | translate }}</span>
+        </span>
       </a>
 
     </nav>
