@@ -1,4 +1,8 @@
-<h1>{{ 'LABEL.RESERVATION' | translate }}</h1>
+<section class="booking-form-card">
+<header class="booking-form-card__header">
+    <span class="booking-form-card__icon"><mat-icon>add_task</mat-icon></span>
+    <h1>{{ 'LABEL.RESERVATION' | translate }}</h1>
+</header>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
 
@@ -81,7 +85,7 @@
         }
     </mat-form-field>
 
-    <mat-form-field hideRequiredMarker="false">
+    <mat-form-field hideRequiredMarker="false" class="description-field">
         <mat-label>{{ 'LABEL.EVENT_DESCRIPTION' | translate }}</mat-label>
         <textarea matInput formControlName="eventDescription" rows="7"></textarea>
         <mat-hint align="start">{{ 'HINT.EVENT_DESCRIPTION' | translate }}</mat-hint>
@@ -98,7 +102,9 @@
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        <mat-icon>send</mat-icon>
         {{ 'BUTTON.SUBMIT' | translate }}
     </button>
 
 </form>
+</section>

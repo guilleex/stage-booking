@@ -3,7 +3,7 @@ import { UserBookingModel } from '../../store/user-booking.model';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import {TooltipPosition, MatTooltipModule} from '@angular/material/tooltip';
 
@@ -16,7 +16,6 @@ import {TooltipPosition, MatTooltipModule} from '@angular/material/tooltip';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    NgClass,
     DatePipe,
     TranslatePipe
   ]
@@ -31,8 +30,8 @@ export class BookingsTable {
     console.log('BookingsTable initialized with bookings:', this.bookings());
   }
 
-  onDeleteBooking(bookingId: string) {
-    console.log('Delete booking with ID:', bookingId);
+  onDeleteBooking(bookingIndex: number) {
+    console.log('Delete booking at index:', bookingIndex);
     // Implement the logic to delete the booking here
   }
 

@@ -1,4 +1,4 @@
-<section class="">
+<section class="bookings-card">
 
   <header class="bookings-card__header">
     <mat-icon class="bookings-card__icon">event_note</mat-icon>
@@ -6,7 +6,7 @@
   </header>
 
   @if (bookings().length) {
-    <div class="bookings-card__table-wrap">
+    <div class="bookings-card__table-wrap bookings-card__desktop">
       <table mat-table [dataSource]="bookings()" multiTemplateDataRows class="bookings-table">
 
         <!-- Status Column -->
@@ -72,8 +72,8 @@
         <!-- Buttons Column -->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button class="row-action" (click)="onDeleteBooking(element.id)" [disabled]="element.status === 'confirmed'" matTooltip="{{ 'MESSAGE.DELETE_BOOKING' | translate }}">
+          <td mat-cell *matCellDef="let element; let bookingIndex = dataIndex">
+            <button mat-icon-button class="row-action" (click)="onDeleteBooking(bookingIndex)" [disabled]="element.status === 'confirmed'" matTooltip="{{ 'MESSAGE.DELETE_BOOKING' | translate }}">
               <mat-icon>delete_forever</mat-icon>
             </button>
           </td>
@@ -94,6 +94,50 @@
         <tr mat-row *matRowDef="let row; columns: ['secondary'];" class="secondary-row"></tr>
 
       </table>
+    </div>
+
+    <div class="bookings-mobile">
+      @for (booking of bookings(); track $index; let bookingIndex = $index) {
+        <article class="booking-item">
+          <header class="booking-item__header">
+            <div class="booking-item__dates">
+              <mat-icon>date_range</mat-icon>
+              <strong>{{ booking.startDate | date }} - {{ booking.endDate | date }}</strong>
+            </div>
+            @switch (booking.status) {
+              @case('confirmed') {
+                <mat-icon class="booking-status booking-status--confirmed" matTooltip="{{ 'MESSAGE.STATUS_CONFIRMED' | translate }}">check_circle</mat-icon>
+              }
+              @case('pending') {
+                <mat-icon class="booking-status booking-status--pending" matTooltip="{{ 'MESSAGE.STATUS_PENDING' | translate }}">pending</mat-icon>
+              }
+              @case('rejected') {
+                <mat-icon class="booking-status booking-status--rejected" matTooltip="{{ 'MESSAGE.STATUS_REJECTED' | translate }}">cancel</mat-icon>
+              }
+            }
+          </header>
+
+          <div class="booking-item__details">
+            <div><mat-icon>location_city</mat-icon><span>{{ booking.city }}</span></div>
+            <div><mat-icon>stadium</mat-icon><span>{{ booking.venue }}</span></div>
+            @if (booking.contactPhone) {
+              <div><mat-icon>call</mat-icon><span>{{ booking.contactPhone }}</span></div>
+            }
+          </div>
+
+          <div class="booking-item__description">
+            <mat-icon>notes</mat-icon>
+            <p>{{ booking.eventDescription }}</p>
+          </div>
+
+          <footer class="booking-item__actions">
+            <button mat-icon-button class="row-action" (click)="onDeleteBooking(bookingIndex)"
+              [disabled]="booking.status === 'confirmed'" matTooltip="{{ 'MESSAGE.DELETE_BOOKING' | translate }}">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </footer>
+        </article>
+      }
     </div>
   } @else {
     <div class="bookings-card__empty">

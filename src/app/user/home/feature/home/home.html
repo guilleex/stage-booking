@@ -1,2 +1,6 @@
-<app-booking-form (formSubmit)="onSubmit($event)" />
-<app-bookings-table [bookings]="bookings()" />
+<main class="home-page">
+	<div class="home-page__content">
+		<app-booking-form (formSubmit)="onSubmit($event)" />
+		<app-bookings-table [bookings]="bookings()" />
+	</div>
+</main>

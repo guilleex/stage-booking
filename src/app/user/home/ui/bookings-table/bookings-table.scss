@@ -18,8 +18,10 @@
     display: flex;
     flex-direction: column;
     background: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+    min-width: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
     overflow: hidden;
 }
 
@@ -33,19 +35,27 @@
     h1 {
         font-size: 1.15rem;
         font-weight: 700;
-        color: #22528b;
+        color: #172033;
         margin: 0;
     }
 }
 
 .bookings-card__icon {
-    color: #2563eb;
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 0.5rem;
+    background: #dcfce7;
+    color: #15803d;
 }
 
 .bookings-card__table-wrap {
     overflow-x: auto;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem 1.25rem;
 }
+
+.bookings-mobile { display: none; }
 
 // ─── Table ──────────────────────────────────────────────────────────────────
 .bookings-table {
@@ -116,7 +126,7 @@ td.mat-mdc-cell {
 }
 
 .data-row td.mat-mdc-cell {
-    border-top: 1px solid #6f7979;
+    border-top: 1px solid #e2e8f0;
     border-bottom: 1px solid #eef1f5;
 }
 
@@ -214,14 +224,121 @@ td.mat-mdc-cell.secondary-cell {
 }
 
 // ─── Responsive ─────────────────────────────────────────────────────────────
-@media (max-width: 599.98px) {
+@media (max-width: 839.98px) {
+    .bookings-card {
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
     .bookings-card__header {
         padding: 1rem;
     }
 
-    th.mat-mdc-header-cell,
-    td.mat-mdc-cell {
-        padding: 0 0.75rem;
+    .bookings-card__desktop { display: none; }
+
+    .bookings-mobile {
+        display: grid;
+        gap: 0.875rem;
+        padding: 1rem;
+        background: #f5f7fb;
     }
+
+    .booking-item {
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .booking-item__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        background: #f8fafc;
+    }
+
+    .booking-item__dates {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        min-width: 0;
+        color: #172033;
+        font-size: 0.86rem;
+
+        mat-icon { color: #2563eb; }
+        strong { overflow-wrap: anywhere; }
+    }
+
+    .booking-status { flex: 0 0 auto; }
+    .booking-status--confirmed { color: #15803d; }
+    .booking-status--pending { color: #b77905; }
+    .booking-status--rejected { color: #dc2626; }
+
+    .booking-item__details {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        padding: 1rem;
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 0;
+            color: #475569;
+            font-size: 0.84rem;
+        }
+
+        mat-icon {
+            width: 1.1rem;
+            height: 1.1rem;
+            flex: 0 0 auto;
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        span { overflow-wrap: anywhere; }
+    }
+
+    .booking-item__description {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin: 0 1rem;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 0.82rem;
+
+        mat-icon {
+            width: 1rem;
+            height: 1rem;
+            flex: 0 0 auto;
+            font-size: 1rem;
+        }
+
+        p { margin: 0; overflow-wrap: anywhere; }
+    }
+
+    .booking-item__actions {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .row-action:not(:disabled) {
+        color: #dc2626;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-item__details { grid-template-columns: minmax(0, 1fr); }
 }
 
