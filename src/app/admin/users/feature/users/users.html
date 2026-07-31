@@ -1,1 +1,166 @@
-<p>users works!</p>
+<section class="users-page">
+	<div class="users-toolbar">
+		<mat-form-field appearance="outline" subscriptSizing="dynamic" class="users-search">
+			<mat-label>{{ 'USER.SEARCH' | translate }}</mat-label>
+			<mat-icon matPrefix>manage_search</mat-icon>
+			<input matInput #searchInput
+				[value]="searchTerm()"
+				(input)="applyFilter(searchInput.value)"
+				[placeholder]="'USER.SEARCH_HINT' | translate" />
+			@if (searchTerm()) {
+				<button matSuffix mat-icon-button
+					[attr.aria-label]="'USER.CLEAR_SEARCH' | translate"
+					(click)="searchInput.value = ''; applyFilter('')">
+					<mat-icon>close</mat-icon>
+				</button>
+			}
+		</mat-form-field>
+
+		<div class="account-summary" [attr.aria-label]="'USER.ACCOUNT_SUMMARY' | translate">
+			<div class="account-summary__item account-summary__item--total">
+				<mat-icon>groups_2</mat-icon>
+				<span><strong>{{ users().length }}</strong>{{ 'USER.TOTAL' | translate }}</span>
+			</div>
+			<div class="account-summary__item account-summary__item--active">
+				<mat-icon>verified_user</mat-icon>
+				<span><strong>{{ activeUsers() }}</strong>{{ 'USER.ACTIVE' | translate }}</span>
+			</div>
+			<div class="account-summary__item account-summary__item--inactive">
+				<mat-icon>person_off</mat-icon>
+				<span><strong>{{ inactiveUsers() }}</strong>{{ 'USER.INACTIVE' | translate }}</span>
+			</div>
+		</div>
+	</div>
+
+	<mat-card class="users-card" appearance="outlined">
+		<div class="users-table-wrap">
+			<table mat-table [dataSource]="dataSource" matSort class="users-table">
+				<ng-container matColumnDef="fullName">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROPERTY.FULL_NAME' | translate }}</th>
+					<td mat-cell *matCellDef="let user">
+						<div class="user-identity">
+							<span class="user-identity__icon"><mat-icon>person</mat-icon></span>
+							<strong>{{ user.fullName }}</strong>
+						</div>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="userName">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROPERTY.USERNAME' | translate }}</th>
+					<td mat-cell *matCellDef="let user"><span class="user-handle">&#64;{{ user.userName }}</span></td>
+				</ng-container>
+
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROPERTY.EMAIL' | translate }}</th>
+					<td mat-cell *matCellDef="let user">{{ user.email || '—' }}</td>
+				</ng-container>
+
+				<ng-container matColumnDef="phone">
+					<th mat-header-cell *matHeaderCellDef>{{ 'PROPERTY.PHONE_NUMBER' | translate }}</th>
+					<td mat-cell *matCellDef="let user">{{ user.phone || '—' }}</td>
+				</ng-container>
+
+				<ng-container matColumnDef="active">
+					<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROPERTY.STATUS' | translate }}</th>
+					<td mat-cell *matCellDef="let user">
+						<span class="account-status" [class.account-status--inactive]="!user.active">
+							<mat-icon>{{ user.active ? 'check_circle' : 'pause_circle' }}</mat-icon>
+							{{ (user.active ? 'USER.ACTIVE' : 'USER.INACTIVE') | translate }}
+						</span>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="actions">
+					<th mat-header-cell *matHeaderCellDef><span class="visually-hidden">{{ 'USER.ACTIONS' | translate }}</span></th>
+					<td mat-cell *matCellDef="let user">
+						<div class="account-actions">
+							<button mat-icon-button class="account-action account-action--view"
+								[attr.aria-label]="'USER.VIEW' | translate"
+								[matTooltip]="'USER.VIEW' | translate"
+								(click)="viewUser(user)">
+								<mat-icon>visibility</mat-icon>
+							</button>
+							<button mat-icon-button class="account-action account-action--edit"
+								[attr.aria-label]="'USER.EDIT' | translate"
+								[matTooltip]="'USER.EDIT' | translate"
+								(click)="editUser(user)">
+								<mat-icon>manage_accounts</mat-icon>
+							</button>
+							<button mat-icon-button class="account-action account-action--status"
+								[class.account-action--enable]="!user.active"
+								[attr.aria-label]="(user.active ? 'USER.DISABLE' : 'USER.ENABLE') | translate"
+								[matTooltip]="(user.active ? 'USER.DISABLE' : 'USER.ENABLE') | translate"
+								(click)="toggleUserStatus(user)">
+								<mat-icon>{{ user.active ? 'toggle_off' : 'toggle_on' }}</mat-icon>
+							</button>
+						</div>
+					</td>
+				</ng-container>
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+				<tr class="empty-row" *matNoDataRow>
+					<td [attr.colspan]="displayedColumns.length">
+						<mat-icon>group_off</mat-icon>
+						<span>{{ 'USER.NO_RESULTS' | translate }}</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="users-mobile">
+			@for (user of mobileUsers(); track user.id) {
+				<article class="user-card" [class.user-card--inactive]="!user.active">
+					<header class="user-card__header">
+						<div class="user-card__identity">
+							<span class="user-card__icon"><mat-icon>account_circle</mat-icon></span>
+							<div>
+								<strong>{{ user.fullName }}</strong>
+								<span>&#64;{{ user.userName }}</span>
+							</div>
+						</div>
+						<span class="account-status" [class.account-status--inactive]="!user.active">
+							<mat-icon>{{ user.active ? 'check_circle' : 'pause_circle' }}</mat-icon>
+							{{ (user.active ? 'USER.ACTIVE' : 'USER.INACTIVE') | translate }}
+						</span>
+					</header>
+
+					<div class="user-card__details">
+						<div><mat-icon>mail_outline</mat-icon><span>{{ user.email || '—' }}</span></div>
+						<div><mat-icon>phone</mat-icon><span>{{ user.phone || '—' }}</span></div>
+						<div><mat-icon>shield_person</mat-icon><span class="account-type">{{ user.role }}</span></div>
+					</div>
+
+					<footer class="user-card__actions">
+						<button mat-stroked-button class="mobile-account-action" (click)="viewUser(user)">
+							<mat-icon>visibility</mat-icon>{{ 'USER.VIEW_SHORT' | translate }}
+						</button>
+						<button mat-stroked-button class="mobile-account-action" (click)="editUser(user)">
+							<mat-icon>manage_accounts</mat-icon>{{ 'USER.EDIT_SHORT' | translate }}
+						</button>
+						<button mat-stroked-button class="mobile-account-action mobile-account-action--status"
+							[class.mobile-account-action--enable]="!user.active"
+							(click)="toggleUserStatus(user)">
+							<mat-icon>{{ user.active ? 'person_off' : 'person_add' }}</mat-icon>
+							{{ (user.active ? 'USER.DISABLE_SHORT' : 'USER.ENABLE_SHORT') | translate }}
+						</button>
+					</footer>
+				</article>
+			} @empty {
+				<div class="mobile-empty">
+					<mat-icon>group_off</mat-icon>
+					<span>{{ 'USER.NO_RESULTS' | translate }}</span>
+				</div>
+			}
+		</div>
+
+		<mat-paginator
+			[length]="filteredUsers().length"
+			[pageIndex]="pageIndex()"
+			[pageSize]="pageSize()"
+			[pageSizeOptions]="[5, 10, 25]"
+			showFirstLastButtons
+			(page)="onPageChange($event)" />
+	</mat-card>
+</section>

@@ -118,17 +118,6 @@ const employees = [
 
 const listOfAllUsers = [
   {
-    id: 1,
-    email: 'admin@stage.com',
-    username: 'admin',
-    firstName: 'Admin',
-    lastName: 'User',
-    phone: '0601234567',
-    active: true,
-    roleId: 1,
-    role: 'Admin',
-  },
-  {
     id: 3,
     email: '',
     username: 'employee1',
@@ -136,6 +125,28 @@ const listOfAllUsers = [
     lastName: 'One',
     phone: '0601111111',
     active: true,
+    roleId: 3,
+    role: 'Employee'
+  },
+  {
+    id: 4,
+    email: '',
+    username: 'employee2',
+    firstName: 'Employee',
+    lastName: 'Two',
+    phone: '0602222222',
+    active: true,
+    roleId: 3,
+    role: 'Employee'
+  },
+  {
+    id: 5,
+    email: '',
+    username: 'employee3',
+    firstName: 'Employee',
+    lastName: 'Three',
+    phone: '0603333333',
+    active: false,
     roleId: 3,
     role: 'Employee'
   }

@@ -32,6 +32,25 @@
 		"DELETE": "Delete",
 		"NO_RESULTS": "No employees match your search"
 	},
+	"USER": {
+		"SEARCH": "Search user accounts",
+		"SEARCH_HINT": "Name, username, email, phone or role",
+		"CLEAR_SEARCH": "Clear user search",
+		"ACCOUNT_SUMMARY": "User account summary",
+		"TOTAL": "Total accounts",
+		"ACTIVE": "Active",
+		"INACTIVE": "Inactive",
+		"ACTIONS": "Account actions",
+		"VIEW": "View account",
+		"VIEW_SHORT": "View",
+		"EDIT": "Edit account",
+		"EDIT_SHORT": "Edit",
+		"ENABLE": "Enable account",
+		"ENABLE_SHORT": "Enable",
+		"DISABLE": "Disable account",
+		"DISABLE_SHORT": "Disable",
+		"NO_RESULTS": "No user accounts match your search"
+	},
 	"PAGINATOR": {
 		"ITEMS_PER_PAGE": "Items per page",
 		"NEXT_PAGE": "Next page",

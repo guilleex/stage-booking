@@ -90,6 +90,25 @@
         "DELETE": "Obriši",
         "NO_RESULTS": "Nema zaposlenih koji odgovaraju pretrazi"
     },
+    "USER": {
+        "SEARCH": "Pretraži korisničke naloge",
+        "SEARCH_HINT": "Ime, korisničko ime, email, telefon ili uloga",
+        "CLEAR_SEARCH": "Obriši pretragu korisnika",
+        "ACCOUNT_SUMMARY": "Pregled korisničkih naloga",
+        "TOTAL": "Ukupno naloga",
+        "ACTIVE": "Aktivan",
+        "INACTIVE": "Neaktivan",
+        "ACTIONS": "Akcije naloga",
+        "VIEW": "Pregledaj nalog",
+        "VIEW_SHORT": "Pregled",
+        "EDIT": "Izmeni nalog",
+        "EDIT_SHORT": "Izmeni",
+        "ENABLE": "Aktiviraj nalog",
+        "ENABLE_SHORT": "Aktiviraj",
+        "DISABLE": "Deaktiviraj nalog",
+        "DISABLE_SHORT": "Deaktiviraj",
+        "NO_RESULTS": "Nema korisničkih naloga koji odgovaraju pretrazi"
+    },
     "PAGINATOR": {
         "ITEMS_PER_PAGE": "Stavki po stranici",
         "NEXT_PAGE": "Sledeća stranica",
