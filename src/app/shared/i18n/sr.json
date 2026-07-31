@@ -66,6 +66,16 @@
         "REQUEST_DETAILS": "Podaci zahteva",
         "DATE_RANGE": "Period"
     },
+    "PASSWORD_RESET": {
+        "TITLE": "Resetovanje lozinke",
+        "DESCRIPTION": "Unesite email adresu povezanu sa vašim nalogom i poslaćemo vam uputstvo za resetovanje lozinke.",
+        "EMAIL_LABEL": "Email adresa",
+        "EMAIL_PLACEHOLDER": "ime@primer.com",
+        "EMAIL_REQUIRED": "Email adresa je obavezna",
+        "EMAIL_INVALID": "Unesite ispravnu email adresu",
+        "SEND": "Pošalji link",
+        "CLOSE": "Zatvori resetovanje lozinke"
+    },
     "EMPLOYEE": {
         "SEARCH": "Pretraži zaposlene",
         "SEARCH_HINT": "Ime, korisničko ime, email ili uloga",

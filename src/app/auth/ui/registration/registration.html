@@ -1,7 +1,10 @@
 <mat-toolbar class="reg-toolbar">
-    <span>{{ 'LABEL.REGISTRATION' | translate }}</span>
+    <div class="reg-toolbar__heading">
+        <span class="reg-toolbar__icon"><mat-icon>person_add</mat-icon></span>
+        <span class="reg-toolbar__title">{{ 'LABEL.REGISTRATION' | translate }}</span>
+    </div>
     <span class="toolbar-spacer"></span>
-    <button mat-icon-button mat-dialog-close aria-label="Close modal button">
+    <button mat-icon-button class="reg-close" mat-dialog-close aria-label="Close modal button">
         <mat-icon>close</mat-icon>
     </button>
 </mat-toolbar>
@@ -13,8 +16,8 @@
         <div class="reg-row">
             <mat-form-field appearance="outline" class="reg-field">
                 <mat-label>{{ 'LABEL.FIRST_NAME' | translate }}</mat-label>
-                <input matInput formControlName="firstName" />
-                <mat-icon matSuffix>account_box</mat-icon>
+                <mat-icon matPrefix>person_outline</mat-icon>
+                <input matInput formControlName="firstName" autocomplete="given-name" />
                 @if (form.get('firstName')?.touched && form.get('firstName')?.errors?.['required']) {
                     <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
                 }
@@ -22,20 +25,20 @@
 
             <mat-form-field appearance="outline" class="reg-field">
                 <mat-label>{{ 'LABEL.LAST_NAME' | translate }}</mat-label>
-                <input matInput formControlName="lastName" />
-                <mat-icon matSuffix>account_box</mat-icon>
+                <mat-icon matPrefix>person_outline</mat-icon>
+                <input matInput formControlName="lastName" autocomplete="family-name" />
                 @if (form.get('lastName')?.touched && form.get('lastName')?.errors?.['required']) {
                     <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
                 }
             </mat-form-field>
         </div>
 
-        <!-- Row 2: Email – full width -->
-        <div class="reg-row reg-row--full">
+        <!-- Row 2: Contact details -->
+        <div class="reg-row">
             <mat-form-field appearance="outline" class="reg-field">
                 <mat-label>{{ 'LABEL.EMAIL' | translate }}</mat-label>
-                <input matInput type="email" formControlName="email" />
-                <mat-icon matSuffix>email</mat-icon>
+            <mat-icon matPrefix>mail_outline</mat-icon>
+            <input matInput type="email" formControlName="email" autocomplete="email" />
                 @if (form.get('email')?.touched && form.get('email')?.errors?.['email']) {
                     <mat-error>{{ 'ERROR.INVALID_EMAIL' | translate }}</mat-error>
                 }
@@ -46,14 +49,11 @@
                     <mat-error>{{ 'ERROR.EMAIL_TAKEN' | translate }}</mat-error>
                 }
             </mat-form-field>
-        </div>
 
-        <!-- Row 3: Phone + Username -->
-        <div class="reg-row">
             <mat-form-field appearance="outline" class="reg-field">
                 <mat-label>{{ 'LABEL.PHONE_NUMBER' | translate }}</mat-label>
-                <input matInput type="tel" formControlName="phone" />
-                <mat-icon matSuffix>phone</mat-icon>
+                <mat-icon matPrefix>phone</mat-icon>
+                <input matInput type="tel" formControlName="phone" autocomplete="tel" />
                 @if (form.get('phone')?.touched && form.get('phone')?.errors?.['pattern']) {
                     <mat-error>{{ 'ERROR.INVALID_PHONE' | translate }}</mat-error>
                 }
@@ -61,11 +61,14 @@
                     <mat-error>{{ 'ERROR.MAX_LENGTH' | translate }}</mat-error>
                 }
             </mat-form-field>
+        </div>
 
+        <!-- Row 3: Username -->
+        <div class="reg-row reg-row--full">
             <mat-form-field appearance="outline" class="reg-field">
                 <mat-label>{{ 'LABEL.USERNAME' | translate }}</mat-label>
-                <input matInput formControlName="userName" />
-                <mat-icon matSuffix>person</mat-icon>
+                <mat-icon matPrefix>alternate_email</mat-icon>
+                <input matInput formControlName="userName" autocomplete="username" />
                 @if (form.get('userName')?.touched && form.get('userName')?.errors?.['required']) {
                     <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
                 }
@@ -82,8 +85,8 @@
         <div class="reg-row">
             <mat-form-field appearance="outline" class="reg-field">
                 <mat-label>{{ 'LABEL.PASSWORD' | translate }}</mat-label>
-                <input matInput type="password" formControlName="password" />
-                <mat-icon matSuffix>lock</mat-icon>
+                <mat-icon matPrefix>lock_outline</mat-icon>
+                <input matInput type="password" formControlName="password" autocomplete="new-password" />
                 @if (form.get('password')?.touched && form.get('password')?.errors?.['required']) {
                     <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
                 }
@@ -94,8 +97,8 @@
 
             <mat-form-field appearance="outline" class="reg-field">
                 <mat-label>{{ 'LABEL.CONFIRM_PASSWORD' | translate }}</mat-label>
-                <input matInput type="password" formControlName="confirmPassword" />
-                <mat-icon matSuffix>lock</mat-icon>
+                <mat-icon matPrefix>verified_user</mat-icon>
+                <input matInput type="password" formControlName="confirmPassword" autocomplete="new-password" />
                 @if (form.get('confirmPassword')?.touched && form.get('confirmPassword')?.errors?.['required']) {
                     <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
                 }
@@ -109,6 +112,11 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class="reg-actions">
-    <button mat-stroked-button class="reg-btn reg-btn--secondary" mat-dialog-close>{{ 'BUTTON.CANCEL' | translate }}</button>
-    <button mat-flat-button class="reg-btn reg-btn--primary" [disabled]="form.invalid" (click)="onFormSubmit()">{{ 'BUTTON.REGISTER' | translate }}</button>
+    <button mat-stroked-button class="reg-btn reg-btn--secondary" mat-dialog-close>
+        {{ 'BUTTON.CANCEL' | translate }}
+    </button>
+    <button mat-flat-button class="reg-btn reg-btn--primary" [disabled]="form.invalid" (click)="onFormSubmit()">
+        <mat-icon>person_add</mat-icon>
+        {{ 'BUTTON.REGISTER' | translate }}
+    </button>
 </mat-dialog-actions>

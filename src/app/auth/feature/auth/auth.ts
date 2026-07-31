@@ -53,7 +53,7 @@ export class Auth {
     const isMobile = !this.screenSizeSrv.isDesktopSignal();
 
     const dialogRef = this.dialog.open(Registration, {
-      panelClass: 'custom-dialog',
+      panelClass: ['custom-dialog', 'registration-dialog'],
       autoFocus: false,
       width:     isMobile ? '100vw'  : '680px',
       maxWidth:  isMobile ? '100vw'  : '90vw',
@@ -70,13 +70,15 @@ export class Auth {
   }
 
   forgotPassword(): void {
+    const isMobile = !this.screenSizeSrv.isDesktopSignal();
 
-    const dialogRef = this.dialog.open(PasswordReset, {
-      panelClass: 'custom-dialog',
+    this.dialog.open(PasswordReset, {
+      panelClass: 'password-reset-dialog',
       autoFocus: false,
+      width: isMobile ? 'calc(100vw - 2rem)' : '29rem',
+      maxWidth: isMobile ? 'calc(100vw - 2rem)' : '90vw',
+      maxHeight: 'calc(100dvh - 2rem)'
     });
-
-
   }
 
   async onRegister(userData: RegisterUserData): Promise<void> {

@@ -1,127 +1,184 @@
-// ─── Host: let Material dialog fill the host properly ────────────────────────
 :host {
-  --c-accent:       #0f766e;
-  --c-accent-dark:  #0b4f4a;
-  --c-border:       rgba(11, 79, 74, 0.15);
-  --c-text:         #0d2b27;
-  --c-muted:        #4d6b66;
-  --c-toolbar-bg:   #0f766e;
-  --c-toolbar-text: #ffffff;
-  --c-actions-bg:   #f5fafa;
-  --radius-btn:     0.5rem;
+  --reg-blue: #2563eb;
+  --reg-blue-dark: #1d4ed8;
+  --reg-teal: #0f766e;
+  --reg-ink: #172033;
+  --reg-muted: #64748b;
+  --reg-border: #dbe3ed;
 
   display: flex;
+  min-height: 0;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  
+  background: #fff;
+  color: var(--reg-ink);
 }
 
-// ─── Toolbar ─────────────────────────────────────────────────────────────────
 .reg-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  flex-shrink: 0;
-  background: var(--c-toolbar-bg) !important;
-  color: var(--c-toolbar-text) !important;
-  border-radius: inherit;          // respect Material dialog border-radius
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  min-height: 4.5rem;
+  flex: 0 0 auto;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--reg-border);
+  background: #fff !important;
+  color: var(--reg-ink) !important;
+  z-index: 2;
+}
 
-  span:first-child {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+.reg-toolbar__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.reg-toolbar__icon {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: #dbeafe;
+  color: var(--reg-blue-dark);
+  --mat-icon-color: var(--reg-blue-dark);
+
+  mat-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+    font-size: 1.3rem;
   }
+}
+
+.reg-toolbar__title {
+  overflow: hidden;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .toolbar-spacer {
   flex: 1;
 }
 
-// ─── Scrollable content ───────────────────────────────────────────────────────
+.reg-close {
+  flex: 0 0 auto;
+  color: var(--reg-muted);
+  --mat-icon-color: var(--reg-muted);
+
+  &:hover {
+    background: #fff1f2;
+    color: #be123c;
+    --mat-icon-color: #be123c;
+  }
+}
+
 .reg-content {
+  min-height: 0;
   flex: 1 1 auto;
   overflow-y: auto;
-  padding: 2.25rem 1.5rem 0.5rem !important;
-  // remove Material's default max-height so the host controls height
+  padding: 1.5rem !important;
   max-height: unset !important;
+  background: #f8fafc;
 }
 
-// ─── Form layout ─────────────────────────────────────────────────────────────
 .reg-form {
   display: flex;
+  width: 100%;
   flex-direction: column;
-  gap: 0;
+  gap: 1rem;
 }
 
-// Each row: single column by default (mobile)
 .reg-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
 }
 
 .reg-field {
   width: 100%;
-  margin-bottom: 1.75rem;
+  margin: 0;
+
+  mat-icon {
+    color: var(--reg-muted);
+  }
 }
 
-// ─── Desktop two-column layout ───────────────────────────────────────────────
 .reg-form--desktop {
   .reg-row {
-    flex-direction: row;
-    gap: 1rem;
-
-    .reg-field {
-      flex: 1 1 0;
-      min-width: 0;
-    }
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  // email row stays full-width
   .reg-row--full {
-    flex-direction: column;
-
-    .reg-field {
-      flex: unset;
-      width: 100%;
-    }
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-// ─── Actions bar ─────────────────────────────────────────────────────────────
 .reg-actions {
-  flex-shrink: 0;
   display: flex !important;
+  min-height: 4.5rem;
+  flex: 0 0 auto;
   justify-content: flex-end !important;
   gap: 0.75rem;
-  padding: 0.875rem 1.5rem !important;
-  border-top: 1px solid var(--c-border);
-  background: var(--c-actions-bg);
-  border-bottom-left-radius: inherit;
-  border-bottom-right-radius: inherit;
+  padding: 0.75rem 1.5rem !important;
+  border-top: 1px solid var(--reg-border);
+  background: #fff;
 }
 
 .reg-btn {
-  min-width: 7.5rem;
-  height: 2.5rem;
-  border-radius: var(--radius-btn) !important;
+  min-width: 8rem;
+  border-radius: 0.5rem !important;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0;
 }
 
 .reg-btn--primary {
-  background: var(--c-accent) !important;
+  background: var(--reg-blue) !important;
   color: #fff !important;
 
   &:disabled {
-    opacity: 0.45;
+    opacity: 0.55;
   }
 }
 
 .reg-btn--secondary {
-  border-color: var(--c-accent) !important;
-  color: var(--c-accent-dark) !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+@media (max-width: 839.98px) {
+  .reg-toolbar {
+    min-height: calc(4rem + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) 1rem 0;
+  }
+
+  .reg-toolbar__icon {
+    width: 2.15rem;
+    height: 2.15rem;
+  }
+
+  .reg-content {
+    padding: 1rem !important;
+  }
+
+  .reg-form {
+    gap: 0.875rem;
+  }
+
+  .reg-row {
+    gap: 0.875rem;
+  }
+
+  .reg-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0.75rem 1rem max(0.75rem, env(safe-area-inset-bottom)) !important;
+  }
+
+  .reg-btn {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 1rem !important;
+  }
 }

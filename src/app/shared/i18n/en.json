@@ -8,6 +8,16 @@
 		"REQUEST_DETAILS": "Request details",
 		"DATE_RANGE": "Date range"
 	},
+	"PASSWORD_RESET": {
+		"TITLE": "Reset password",
+		"DESCRIPTION": "Enter the email address associated with your account and we'll send you password reset instructions.",
+		"EMAIL_LABEL": "Email address",
+		"EMAIL_PLACEHOLDER": "name@example.com",
+		"EMAIL_REQUIRED": "Email address is required",
+		"EMAIL_INVALID": "Enter a valid email address",
+		"SEND": "Send reset link",
+		"CLOSE": "Close password reset"
+	},
 	"EMPLOYEE": {
 		"SEARCH": "Search employees",
 		"SEARCH_HINT": "Name, username, email or role",
