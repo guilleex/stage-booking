@@ -1,0 +1,61 @@
+<mat-toolbar class="dialog-toolbar dialog-toolbar--reject">
+    <span class="dialog-toolbar__icon"><mat-icon>cancel</mat-icon></span>
+    <span mat-dialog-title>{{ 'DIALOG.REJECT_TITLE' | translate }}</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-icon-button mat-dialog-close aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-dialog-content class="dialog-content">
+    <p class="dialog-message">{{ 'DIALOG.REJECT_MESSAGE' | translate }}</p>
+
+    <section class="request-summary" [attr.aria-label]="'DIALOG.REQUEST_DETAILS' | translate">
+        <div class="request-summary__identity">
+            <span class="request-summary__avatar"><mat-icon>person</mat-icon></span>
+            <div>
+                <span class="request-summary__label">{{ 'PROPERTY.FULL_NAME' | translate }}</span>
+                <strong>{{ data.userFullName }}</strong>
+            </div>
+        </div>
+
+        <div class="request-summary__grid">
+            <div class="request-detail">
+                <mat-icon>date_range</mat-icon>
+                <div>
+                    <span>{{ 'DIALOG.DATE_RANGE' | translate }}</span>
+                    <strong>{{ data.startDate | date }} – {{ data.endDate | date }}</strong>
+                </div>
+            </div>
+            <div class="request-detail">
+                <mat-icon>location_on</mat-icon>
+                <div>
+                    <span>{{ 'PROPERTY.VENUE' | translate }}</span>
+                    <strong>{{ data.venue }}, {{ data.city }}</strong>
+                </div>
+            </div>
+            @if (data.eventDescription) {
+                <div class="request-detail request-detail--wide">
+                    <mat-icon>notes</mat-icon>
+                    <div>
+                        <span>{{ 'PROPERTY.EVENT_DESCRIPTION' | translate }}</span>
+                        <p>{{ data.eventDescription }}</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <div class="warning-note">
+        <mat-icon>info</mat-icon>
+        <span>{{ 'DIALOG.REJECT_WARNING' | translate }}</span>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions">
+    <button mat-button mat-dialog-close>{{ 'BUTTON.CANCEL' | translate }}</button>
+    <button mat-flat-button class="confirm-button confirm-button--reject" (click)="onConfirm()">
+        <mat-icon>close</mat-icon>
+        {{ 'BUTTON.REJECT' | translate }}
+    </button>
+</mat-dialog-actions>

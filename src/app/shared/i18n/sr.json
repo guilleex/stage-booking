@@ -1,7 +1,10 @@
 {
     "PAGE": {
-        "Home": "Početna",
-        "MyAccount": "Moj nalog"
+        "DASHBOARD": "Kontrolna tabla",
+        "EMPLOYEES": "Zaposleni",
+        "USERS": "Korisnici",
+        "MY_ACCOUNT": "Moj nalog",
+        "HOME": "Početna"
     },
     "LABEL": {
         "LOGIN": "Prijavite se",
@@ -26,7 +29,10 @@
         "EVENT_DESCRIPTION": "Opis događaja",
         "RESERVATION": "Rezervacija Termina",
         "BOOKINGS": "Moji termini",
-        "NO_BOOKINGS": "Trenutno nemate zakazanih termina"
+        "NO_BOOKINGS": "Trenutno nemate zakazanih termina",
+        "ACCEPTED": "Prihvaćeno",
+        "PENDING": "Na čekanju",
+        "INCOMING_REQUESTS": "Aktuelni zahtevi"
     },
     "ERROR": {
         "REQUIRED_FIELD": "Ovo polje je obavezno",
@@ -48,14 +54,26 @@
         "STATUS_PENDING": "Status prijave: Na čekanju",
         "STATUS_REJECTED": "Status prijave: Odbijeno",
         "BOOKING_REQUEST_SUBMITTED": "Vaš zahtev za rezervaciju je uspešno poslat. Bićete obavešteni o statusu rezervacije.",
-        "DELETE_BOOKING": "Obriši rezervaciju"
+        "DELETE_BOOKING": "Obriši rezervaciju",
+        "REQUESTS_MESSAGE": "Pregledajte, prihvatite ili odbijte zahteve za rezervaciju"
+    },
+    "DIALOG": {
+        "ACCEPT_TITLE": "Prihvati zahtev",
+        "ACCEPT_MESSAGE": "Proverite podatke pre nego što potvrdite rezervaciju.",
+        "REJECT_TITLE": "Odbij zahtev",
+        "REJECT_MESSAGE": "Proverite podatke zahteva koji želite da odbijete.",
+        "REJECT_WARNING": "Zahtev će biti označen kao odbijen i termin neće biti rezervisan.",
+        "REQUEST_DETAILS": "Podaci zahteva",
+        "DATE_RANGE": "Period"
     },
     "BUTTON": {
         "SUBMIT": "Pošaljite",
         "CANCEL": "Otkaži",
         "LOGIN": "Prijavite se",
         "FORGOT_PASSWORD": "Zaboravili ste lozinku?",
-        "REGISTER": "Registrujte se"
+        "REGISTER": "Registrujte se",
+        "CONFIRM": "Prihvati",
+        "REJECT": "Odbij"
     },
     "HINT": {
         "EMAIL": "Unesite email adresu",
@@ -79,6 +97,7 @@
         "VENUE": "Lokacija",
         "CONTACT_PHONE": "Telefon",
         "EVENT_DESCRIPTION": "Opis događaja",
-        "STATUS": "Status"
+        "STATUS": "Status",
+        "FULL_NAME": "Korisnik"
     }
 }

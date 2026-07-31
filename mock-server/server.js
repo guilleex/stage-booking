@@ -21,7 +21,7 @@ const users = [
     id: 2,
     email: 'user@stage.com',
     username: 'user',
-    password: 'User123!',
+    password: '1234',
     firstName: 'Regular',
     lastName: 'user',
     phone: '0607654321',
@@ -32,6 +32,52 @@ const users = [
     refreshToken: 'mock-refresh-token-user',
     tokenExpirationDate: new Date(Date.now() + 3600000).toISOString()
   }
+];
+
+const requests = [
+  {
+    id: 1,
+    userFullName: 'John Doe',
+    startDate: '2026-07-01',
+    endDate: '2026-07-02',
+    city: 'New York',
+    venue: 'Madison Square Garden',
+    contactPhone: '123-456-7890',
+    eventDescription: 'Concert',
+    status: 'Pending'
+  },
+  {
+    id: 2,
+    userFullName: 'Jane Smith',
+    startDate: '2026-08-15',
+    endDate: '2026-08-16',
+    city: 'Los Angeles',
+    venue: 'Staples Center',
+    contactPhone: '987-654-3210',
+    eventDescription: 'Conference',
+    status: 'Accepted'
+  },
+  {
+    id: 3,
+    userFullName: 'Alice Johnson',
+    startDate: '2026-09-10',
+    endDate: '2026-09-12',
+    city: 'Chicago',
+    venue: 'United Center',
+    contactPhone: '555-123-4567',
+    eventDescription: 'Trade Show',
+    status: 'Accepted'
+  }
+];
+
+const statusDays = [
+  { status: 'Pending',  date: '2026-07-01' },
+  { status: 'Pending',  date: '2026-07-02' },
+  { status: 'Accepted', date: '2026-07-15' },
+  { status: 'Accepted', date: '2026-07-16' },
+  { status: 'Accepted', date: '2026-07-10' },
+  { status: 'Accepted', date: '2026-07-11' },
+  { status: 'Accepted', date: '2026-07-12' }
 ];
 
 const server = http.createServer((req, res) => {
@@ -117,14 +163,30 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.method === 'GET' && req.url === '/api/bookings/getAllRequests') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(requests));
+    return;
+  }
+
+  if (req.method === 'GET' && req.url === '/api/bookings/getDaysWithStatus') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(statusDays));
+    return;
+  }
+
   res.writeHead(404, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ message: 'No route for ' + req.method + ' ' + req.url }));
 });
+
+
 
 server.listen(3000, () => {
   console.log('\n  Mock server running → http://localhost:3000/api\n');
   console.log('  Endpoints:');
   console.log('    POST /api/LOGIN/LOGIN   { username, password } or { email, password }');
   console.log('    GET  /api/users');
-  console.log('    GET  /api/users/:id\n');
+  console.log('    GET  /api/users/:id');
+  console.log('    GET  /api/bookings/getAllRequests');
+  console.log('    GET  /api/bookings/getDaysWithStatus');
 });

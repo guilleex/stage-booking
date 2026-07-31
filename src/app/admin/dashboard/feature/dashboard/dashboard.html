@@ -1,1 +1,59 @@
-<p>dashboard works!</p>
+<div class="dashboard-shell">
+
+	<section class="overview-row">
+
+		<div class="sidebar-column">
+			<mat-card class="calendar-card" appearance="outlined">
+				<mat-card-content>
+					@if (daysLoaded()) {
+						<mat-calendar [dateClass]="dayClass()" />
+					} @else {
+						<div class="calendar-loading">
+							<mat-spinner diameter="32"></mat-spinner>
+						</div>
+					}
+
+					<div class="legend">
+						@for (item of statusLegend(); track item.status) {
+							<span class="legend-item" [class]="'legend-item--' + item.status">
+								<span class="legend-item__dot"></span>
+								{{ item.label }}
+							</span>
+						}
+					</div>
+				</mat-card-content>
+			</mat-card>
+
+			<div class="kpi-row">
+				@for (card of summaryCards(); track card.label) {
+					<mat-card class="kpi-card" [class]="'kpi-card--' + card.tone" appearance="outlined">
+						<mat-card-content>
+							<div class="kpi-card__icon">
+								<mat-icon>{{ card.icon }}</mat-icon>
+							</div>
+							<div class="kpi-card__body">
+								<span class="kpi-card__label">{{ card.label }}</span>
+								<strong class="kpi-card__value">{{ card.value }}</strong>
+							</div>
+						</mat-card-content>
+					</mat-card>
+				}
+			</div>
+		</div>
+
+		<mat-card class="requests-card" appearance="outlined">
+		<mat-card-header>
+			<mat-card-title>{{ 'LABEL.INCOMING_REQUESTS' | translate }}</mat-card-title>
+			<mat-card-subtitle>{{ 'MESSAGE.REQUESTS_MESSAGE' | translate }}</mat-card-subtitle>
+		</mat-card-header>
+
+		<mat-card-content>
+			<div class="requests-table-wrap">
+				<app-incoming-requests-table [incomingRequests]="dashboardRequests" (reqToAccept)="openAcceptRequestDialog($event)" (reqToReject)="openRejectRequestDialog($event)" />
+			</div>
+		</mat-card-content>
+	</mat-card>
+
+	</section>
+
+</div>

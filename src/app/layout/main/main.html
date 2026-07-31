@@ -14,35 +14,35 @@
            routerLink="/admin/dashboard" routerLinkActive #dashRla="routerLinkActive"
            [activated]="dashRla.isActive">
           <mat-icon matListItemIcon>dashboard</mat-icon>
-          <span matListItemTitle>Dashboard</span>
+          <span matListItemTitle>{{ 'PAGE.DASHBOARD' | translate }}</span>
         </a>
 
         <a *appHasRole="['Admin']" mat-list-item
            routerLink="/admin/employees" routerLinkActive #empRla="routerLinkActive"
            [activated]="empRla.isActive">
           <mat-icon matListItemIcon>badge</mat-icon>
-          <span matListItemTitle>Employees</span>
+          <span matListItemTitle>{{ 'PAGE.EMPLOYEES' | translate }}</span>
         </a>
 
         <a *appHasRole="['Admin']" mat-list-item
            routerLink="/admin/users" routerLinkActive #usersRla="routerLinkActive"
            [activated]="usersRla.isActive">
           <mat-icon matListItemIcon>group</mat-icon>
-          <span matListItemTitle>Users</span>
+          <span matListItemTitle>{{ 'PAGE.USERS' | translate }}</span>
         </a>
 
         <a *appHasRole="['User']" mat-list-item
             routerLink="/user/home" routerLinkActive #userHomeRla="routerLinkActive"
             [activated]="userHomeRla.isActive">
           <mat-icon matListItemIcon>home</mat-icon>
-          <span matListItemTitle>{{ 'PAGE.Home' | translate }}</span>
+          <span matListItemTitle>{{ 'PAGE.HOME' | translate }}</span>
         </a>
 
         <a *appHasRole="['Admin', 'Employee', 'User']" mat-list-item
            routerLink="/my-account" routerLinkActive #accountRla="routerLinkActive"
            [activated]="accountRla.isActive">
           <mat-icon matListItemIcon>account_circle</mat-icon>
-          <span matListItemTitle>{{ 'PAGE.MyAccount' | translate }}</span>
+          <span matListItemTitle>{{ 'PAGE.MY_ACCOUNT' | translate }}</span>
         </a>
 
       </mat-nav-list>
@@ -114,7 +114,7 @@
           routerLink="/user/home" routerLinkActive #mobUserHomeRla="routerLinkActive"
           [active]="mobUserHomeRla.isActive">
         <mat-icon>home</mat-icon>
-        <span matListItemTitle>{{ 'PAGE.Home' | translate }}</span>
+        <span matListItemTitle>{{ 'PAGE.HOME' | translate }}</span>
       </a>
 
       <a *appHasRole="['Admin', 'Employee', 'User']" mat-tab-link
@@ -125,6 +125,7 @@
       </a>
 
     </nav>
+
     <mat-tab-nav-panel #tabPanel />
 
   </div>

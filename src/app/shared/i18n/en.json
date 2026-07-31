@@ -1,12 +1,22 @@
 {
-    "PAGE": {
-        "HOME": "Home"
-    },
-    "LABEL": {
-        "LOGIN": "Login",
-        "NO_ACCOUNT": "Don't have an account?",
-        "REGISTER": "Register",
-        "BOOKINGS": "My Bookings",
-        "NO_BOOKINGS": "No bookings yet"
-    }
+	"DIALOG": {
+		"ACCEPT_TITLE": "Accept request",
+		"ACCEPT_MESSAGE": "Review the details before confirming this booking.",
+		"REJECT_TITLE": "Reject request",
+		"REJECT_MESSAGE": "Review the request you are about to reject.",
+		"REJECT_WARNING": "The request will be marked as rejected and the dates will not be reserved.",
+		"REQUEST_DETAILS": "Request details",
+		"DATE_RANGE": "Date range"
+	},
+	"BUTTON": {
+		"CANCEL": "Cancel",
+		"CONFIRM": "Accept",
+		"REJECT": "Reject"
+	},
+	"PROPERTY": {
+		"FULL_NAME": "Customer",
+		"VENUE": "Venue",
+		"CONTACT_PHONE": "Phone",
+		"EVENT_DESCRIPTION": "Event description"
+	}
 }
