@@ -1,13 +1,10 @@
-<mat-toolbar class="reg-toolbar">
-    <div class="reg-toolbar__heading">
-        <span class="reg-toolbar__icon"><mat-icon>person_add</mat-icon></span>
-        <span class="reg-toolbar__title">{{ 'LABEL.REGISTRATION' | translate }}</span>
-    </div>
-    <span class="toolbar-spacer"></span>
+<header class="reg-toolbar">
+    <span class="reg-toolbar__icon"><mat-icon>person_add</mat-icon></span>
+    <h2 class="reg-toolbar__title">{{ 'LABEL.REGISTRATION' | translate }}</h2>
     <button mat-icon-button class="reg-close" mat-dialog-close aria-label="Close modal button">
         <mat-icon>close</mat-icon>
     </button>
-</mat-toolbar>
+</header>
 
 <mat-dialog-content class="reg-content">
     <form [formGroup]="form" class="reg-form" [class.reg-form--desktop]="isDesktop()">

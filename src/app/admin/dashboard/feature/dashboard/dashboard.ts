@@ -197,7 +197,8 @@ export class Dashboard {
       width:     !this.isDesktop() ? '100vw'  : '680px',
       maxWidth:  !this.isDesktop() ? '100vw'  : '90vw',
       height:    !this.isDesktop() ? '100dvh' : 'auto',
-      maxHeight: !this.isDesktop() ? '100dvh' : '90dvh'
+      maxHeight: !this.isDesktop() ? '100dvh' : '90dvh',
+      ariaLabelledBy: 'accept-request-title'
     });
 
     dialogRef.afterClosed().subscribe(resData => {
@@ -214,7 +215,8 @@ export class Dashboard {
       width:     !this.isDesktop() ? '100vw'  : '680px',
       maxWidth:  !this.isDesktop() ? '100vw'  : '90vw',
       height:    !this.isDesktop() ? '100dvh' : 'auto',
-      maxHeight: !this.isDesktop() ? '100dvh' : '90dvh'
+      maxHeight: !this.isDesktop() ? '100dvh' : '90dvh',
+      ariaLabelledBy: 'reject-request-title'
     });
 
     dialogRef.afterClosed().subscribe(resData => {

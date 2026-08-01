@@ -4,7 +4,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { BookingRequestModel } from '../../store/dashboard-data.models';
 
 @Component({
@@ -14,7 +13,6 @@ import { BookingRequestModel } from '../../store/dashboard-data.models';
   imports: [
     DatePipe,
     MatIconModule,
-    MatToolbarModule,
     MatDialogModule,
     MatButtonModule,
     TranslatePipe

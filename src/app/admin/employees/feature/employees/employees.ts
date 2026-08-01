@@ -10,6 +10,11 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TranslatePipe } from '@ngx-translate/core';
 import { EmployeeModel } from '../../store/employee.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ScreensizeService } from '../../../../shared/services/screen-size/screen-size.service';
+import { EmployeeFormDialog, EmployeeFormDialogData } from '../../ui/employee-form-dialog/employee-form-dialog';
+import { EmployeePasswordDialog } from '../../ui/employee-password-dialog/employee-password-dialog';
+import { DeleteEmployeeDialog } from '../../ui/delete-employee-dialog/delete-employee-dialog';
 
 @Component({
   selector: 'app-employees',
@@ -30,6 +35,8 @@ import { EmployeeModel } from '../../store/employee.model';
 export class Employees {
 
   private readonly employeeService = inject(EmployeeService);
+  private readonly dialog = inject(MatDialog);
+  private readonly screenSizeSrv = inject(ScreensizeService);
   private readonly paginator = viewChild(MatPaginator);
   private readonly sort = viewChild(MatSort);
 
@@ -86,19 +93,54 @@ export class Employees {
   }
 
   createEmployee(): void {
-    console.log('Create employee');
+    this.openEmployeeFormDialog({ mode: 'create' });
   }
 
   editEmployee(employee: EmployeeModel): void {
-    console.log('Edit employee:', employee);
+    this.openEmployeeFormDialog({ mode: 'edit', employee });
   }
 
   changeEmployeePassword(employee: EmployeeModel): void {
-    console.log('Change employee password:', employee);
+    const isMobile = !this.screenSizeSrv.isDesktopSignal();
+
+    this.dialog.open(EmployeePasswordDialog, {
+      panelClass: ['employee-dialog-panel', 'employee-compact-dialog-panel'],
+      autoFocus: false,
+      data: employee,
+      width: isMobile ? 'calc(100vw - 1.5rem)' : '32rem',
+      maxWidth: isMobile ? 'calc(100vw - 1.5rem)' : '90vw',
+      maxHeight: 'calc(100dvh - 1.5rem)',
+      ariaLabelledBy: 'employee-password-title',
+    });
   }
 
   deleteEmployee(employee: EmployeeModel): void {
-    console.log('Delete employee:', employee);
+    const isMobile = !this.screenSizeSrv.isDesktopSignal();
+
+    this.dialog.open(DeleteEmployeeDialog, {
+      panelClass: ['employee-dialog-panel', 'employee-compact-dialog-panel'],
+      autoFocus: false,
+      data: employee,
+      width: isMobile ? 'calc(100vw - 1.5rem)' : '30rem',
+      maxWidth: isMobile ? 'calc(100vw - 1.5rem)' : '90vw',
+      maxHeight: 'calc(100dvh - 1.5rem)',
+      ariaLabelledBy: 'delete-employee-title',
+    });
+  }
+
+  private openEmployeeFormDialog(data: EmployeeFormDialogData): void {
+    const isMobile = !this.screenSizeSrv.isDesktopSignal();
+
+    this.dialog.open(EmployeeFormDialog, {
+      panelClass: ['employee-dialog-panel', 'employee-form-dialog-panel'],
+      autoFocus: false,
+      data,
+      width: isMobile ? '100vw' : '45rem',
+      maxWidth: isMobile ? '100vw' : '90vw',
+      height: isMobile ? '100dvh' : 'auto',
+      maxHeight: isMobile ? '100dvh' : '90dvh',
+      ariaLabelledBy: 'employee-form-title',
+    });
   }
 
 }

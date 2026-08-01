@@ -1,11 +1,10 @@
-<mat-toolbar class="dialog-toolbar dialog-toolbar--reject">
+<header class="dialog-toolbar dialog-toolbar--reject">
     <span class="dialog-toolbar__icon"><mat-icon>cancel</mat-icon></span>
-    <span mat-dialog-title>{{ 'DIALOG.REJECT_TITLE' | translate }}</span>
-    <span class="toolbar-spacer"></span>
-    <button mat-icon-button mat-dialog-close aria-label="Close dialog">
+    <h2 id="reject-request-title" class="dialog-toolbar__title">{{ 'DIALOG.REJECT_TITLE' | translate }}</h2>
+    <button mat-icon-button class="dialog-toolbar__close" mat-dialog-close aria-label="Close dialog">
         <mat-icon>close</mat-icon>
     </button>
-</mat-toolbar>
+</header>
 
 <mat-dialog-content class="dialog-content">
     <p class="dialog-message">{{ 'DIALOG.REJECT_MESSAGE' | translate }}</p>

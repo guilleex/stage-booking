@@ -248,6 +248,48 @@ body {
   }
 }
 
+.employee-dialog-panel {
+  .mat-mdc-dialog-container,
+  .mat-mdc-dialog-surface {
+    border-radius: 0.5rem !important;
+  }
+
+  .mat-mdc-dialog-surface {
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.2) !important;
+  }
+}
+
+.employee-form-dialog-panel {
+  @media (max-width: 839.98px) {
+    .mat-mdc-dialog-container,
+    .mat-mdc-dialog-surface {
+      border-radius: 0 !important;
+    }
+  }
+}
+
+.user-dialog-panel {
+  .mat-mdc-dialog-container,
+  .mat-mdc-dialog-surface {
+    border-radius: 0.5rem !important;
+  }
+
+  .mat-mdc-dialog-surface {
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.2) !important;
+  }
+}
+
+.user-form-dialog-panel {
+  @media (max-width: 839.98px) {
+    .mat-mdc-dialog-container,
+    .mat-mdc-dialog-surface {
+      border-radius: 0 !important;
+    }
+  }
+}
+
 // Booking request dialogs use a separate panel class from registration.
 @media (max-width: 839.98px) {
   .req-dialog {

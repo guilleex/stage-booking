@@ -16,19 +16,26 @@
 			}
 		</mat-form-field>
 
-		<div class="account-summary" [attr.aria-label]="'USER.ACCOUNT_SUMMARY' | translate">
-			<div class="account-summary__item account-summary__item--total">
-				<mat-icon>groups_2</mat-icon>
-				<span><strong>{{ users().length }}</strong>{{ 'USER.TOTAL' | translate }}</span>
+		<div class="users-toolbar__actions">
+			<div class="account-summary" [attr.aria-label]="'USER.ACCOUNT_SUMMARY' | translate">
+				<div class="account-summary__item account-summary__item--total">
+					<mat-icon>groups_2</mat-icon>
+					<span><strong>{{ users().length }}</strong>{{ 'USER.TOTAL' | translate }}</span>
+				</div>
+				<div class="account-summary__item account-summary__item--active">
+					<mat-icon>verified_user</mat-icon>
+					<span><strong>{{ activeUsers() }}</strong>{{ 'USER.ACTIVE' | translate }}</span>
+				</div>
+				<div class="account-summary__item account-summary__item--inactive">
+					<mat-icon>person_off</mat-icon>
+					<span><strong>{{ inactiveUsers() }}</strong>{{ 'USER.INACTIVE' | translate }}</span>
+				</div>
 			</div>
-			<div class="account-summary__item account-summary__item--active">
-				<mat-icon>verified_user</mat-icon>
-				<span><strong>{{ activeUsers() }}</strong>{{ 'USER.ACTIVE' | translate }}</span>
-			</div>
-			<div class="account-summary__item account-summary__item--inactive">
-				<mat-icon>person_off</mat-icon>
-				<span><strong>{{ inactiveUsers() }}</strong>{{ 'USER.INACTIVE' | translate }}</span>
-			</div>
+
+			<button mat-flat-button class="create-user-button" (click)="createUser()">
+				<mat-icon>person_add</mat-icon>
+				{{ 'USER.CREATE' | translate }}
+			</button>
 		</div>
 	</div>
 
@@ -86,12 +93,24 @@
 								(click)="editUser(user)">
 								<mat-icon>manage_accounts</mat-icon>
 							</button>
+							<button mat-icon-button class="account-action account-action--reset"
+								[attr.aria-label]="'USER.RESET_PASSWORD' | translate"
+								[matTooltip]="'USER.RESET_PASSWORD' | translate"
+								(click)="resetUserPassword(user)">
+								<mat-icon>lock_reset</mat-icon>
+							</button>
 							<button mat-icon-button class="account-action account-action--status"
 								[class.account-action--enable]="!user.active"
 								[attr.aria-label]="(user.active ? 'USER.DISABLE' : 'USER.ENABLE') | translate"
 								[matTooltip]="(user.active ? 'USER.DISABLE' : 'USER.ENABLE') | translate"
 								(click)="toggleUserStatus(user)">
 								<mat-icon>{{ user.active ? 'toggle_off' : 'toggle_on' }}</mat-icon>
+							</button>
+							<button mat-icon-button class="account-action account-action--delete"
+								[attr.aria-label]="'USER.DELETE' | translate"
+								[matTooltip]="'USER.DELETE' | translate"
+								(click)="deleteUser(user)">
+								<mat-icon>delete</mat-icon>
 							</button>
 						</div>
 					</td>
@@ -139,11 +158,17 @@
 						<button mat-stroked-button class="mobile-account-action" (click)="editUser(user)">
 							<mat-icon>manage_accounts</mat-icon>{{ 'USER.EDIT_SHORT' | translate }}
 						</button>
+						<button mat-stroked-button class="mobile-account-action mobile-account-action--reset" (click)="resetUserPassword(user)">
+							<mat-icon>lock_reset</mat-icon>{{ 'USER.RESET_PASSWORD_SHORT' | translate }}
+						</button>
 						<button mat-stroked-button class="mobile-account-action mobile-account-action--status"
 							[class.mobile-account-action--enable]="!user.active"
 							(click)="toggleUserStatus(user)">
 							<mat-icon>{{ user.active ? 'person_off' : 'person_add' }}</mat-icon>
 							{{ (user.active ? 'USER.DISABLE_SHORT' : 'USER.ENABLE_SHORT') | translate }}
+						</button>
+						<button mat-stroked-button class="mobile-account-action mobile-account-action--delete" (click)="deleteUser(user)">
+							<mat-icon>delete</mat-icon>{{ 'USER.DELETE_SHORT' | translate }}
 						</button>
 					</footer>
 				</article>

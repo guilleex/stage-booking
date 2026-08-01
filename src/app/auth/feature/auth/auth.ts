@@ -77,7 +77,8 @@ export class Auth {
       autoFocus: false,
       width: isMobile ? 'calc(100vw - 2rem)' : '29rem',
       maxWidth: isMobile ? 'calc(100vw - 2rem)' : '90vw',
-      maxHeight: 'calc(100dvh - 2rem)'
+      maxHeight: 'calc(100dvh - 2rem)',
+      ariaLabelledBy: 'password-reset-title'
     });
   }
 

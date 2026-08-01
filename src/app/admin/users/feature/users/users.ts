@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -11,6 +12,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../../store/user.service';
 import { UserModel } from '../../store/user.model';
+import { ScreensizeService } from '../../../../shared/services/screen-size/screen-size.service';
+import { UserFormDialog, UserFormDialogData } from '../../ui/user-form-dialog/user-form-dialog';
+import { UserPasswordResetDialog } from '../../ui/user-password-reset-dialog/user-password-reset-dialog';
+import { DeleteUserDialog } from '../../ui/delete-user-dialog/delete-user-dialog';
 
 @Component({
   selector: 'app-users',
@@ -32,6 +37,8 @@ import { UserModel } from '../../store/user.model';
 export class Users {
 
   private readonly userService = inject(UserService);
+  private readonly dialog = inject(MatDialog);
+  private readonly screenSizeSrv = inject(ScreensizeService);
   private readonly paginator = viewChild(MatPaginator);
   private readonly sort = viewChild(MatSort);
 
@@ -90,16 +97,63 @@ export class Users {
     this.pageSize.set(event.pageSize);
   }
 
+  createUser(): void {
+    this.openUserFormDialog({ mode: 'create' });
+  }
+
   viewUser(user: UserModel): void {
     console.log('View user account:', user);
   }
 
   editUser(user: UserModel): void {
-    console.log('Edit user account:', user);
+    this.openUserFormDialog({ mode: 'edit', user });
+  }
+
+  resetUserPassword(user: UserModel): void {
+    const isMobile = !this.screenSizeSrv.isDesktopSignal();
+
+    this.dialog.open(UserPasswordResetDialog, {
+      panelClass: ['user-dialog-panel', 'user-compact-dialog-panel'],
+      autoFocus: false,
+      data: user,
+      width: isMobile ? 'calc(100vw - 1.5rem)' : '31rem',
+      maxWidth: isMobile ? 'calc(100vw - 1.5rem)' : '90vw',
+      maxHeight: 'calc(100dvh - 1.5rem)',
+      ariaLabelledBy: 'user-password-reset-title',
+    });
   }
 
   toggleUserStatus(user: UserModel): void {
     console.log('Toggle user account status:', user);
   }
-  
+
+  deleteUser(user: UserModel): void {
+    const isMobile = !this.screenSizeSrv.isDesktopSignal();
+
+    this.dialog.open(DeleteUserDialog, {
+      panelClass: ['user-dialog-panel', 'user-compact-dialog-panel'],
+      autoFocus: false,
+      data: user,
+      width: isMobile ? 'calc(100vw - 1.5rem)' : '30rem',
+      maxWidth: isMobile ? 'calc(100vw - 1.5rem)' : '90vw',
+      maxHeight: 'calc(100dvh - 1.5rem)',
+      ariaLabelledBy: 'delete-user-title',
+    });
+  }
+
+  private openUserFormDialog(data: UserFormDialogData): void {
+    const isMobile = !this.screenSizeSrv.isDesktopSignal();
+
+    this.dialog.open(UserFormDialog, {
+      panelClass: ['user-dialog-panel', 'user-form-dialog-panel'],
+      autoFocus: false,
+      data,
+      width: isMobile ? '100vw' : '45rem',
+      maxWidth: isMobile ? '100vw' : '90vw',
+      height: isMobile ? '100dvh' : 'auto',
+      maxHeight: isMobile ? '100dvh' : '90dvh',
+      ariaLabelledBy: 'user-form-title',
+    });
+  }
+
 }

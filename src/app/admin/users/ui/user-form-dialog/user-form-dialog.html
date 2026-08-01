@@ -1,0 +1,176 @@
+<header class="user-dialog-header">
+  <span class="user-dialog-header__icon">
+    <mat-icon>{{ isCreate ? 'person_add' : 'manage_accounts' }}</mat-icon>
+  </span>
+  <h2 id="user-form-title" class="user-dialog-header__title">
+    {{ (isCreate ? 'USER_DIALOG.CREATE_TITLE' : 'USER_DIALOG.EDIT_TITLE') | translate }}
+  </h2>
+  <button
+    mat-icon-button
+    class="user-dialog-header__close"
+    mat-dialog-close
+    [attr.aria-label]="'USER_DIALOG.CLOSE' | translate">
+    <mat-icon>close</mat-icon>
+  </button>
+</header>
+
+<mat-dialog-content class="user-dialog-content">
+  <p class="user-dialog-intro">
+    {{ (isCreate ? 'USER_DIALOG.CREATE_DESCRIPTION' : 'USER_DIALOG.EDIT_DESCRIPTION') | translate }}
+  </p>
+
+  <form id="user-form" class="user-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <section class="form-section" aria-labelledby="user-identity-title">
+      <div class="form-section__heading">
+        <span><mat-icon>person</mat-icon></span>
+        <div>
+          <h3 id="user-identity-title">{{ 'USER_DIALOG.IDENTITY' | translate }}</h3>
+          <p>{{ 'USER_DIALOG.IDENTITY_HINT' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_DIALOG.FIRST_NAME' | translate }}</mat-label>
+          <mat-icon matPrefix>person_outline</mat-icon>
+          <input matInput formControlName="firstName" autocomplete="given-name">
+          @if (form.controls.firstName.touched && form.controls.firstName.hasError('required')) {
+            <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+          } @else if (form.controls.firstName.touched && form.controls.firstName.hasError('maxlength')) {
+            <mat-error>{{ 'USER_DIALOG.NAME_TOO_LONG' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_DIALOG.LAST_NAME' | translate }}</mat-label>
+          <mat-icon matPrefix>person_outline</mat-icon>
+          <input matInput formControlName="lastName" autocomplete="family-name">
+          @if (form.controls.lastName.touched && form.controls.lastName.hasError('required')) {
+            <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+          } @else if (form.controls.lastName.touched && form.controls.lastName.hasError('maxlength')) {
+            <mat-error>{{ 'USER_DIALOG.NAME_TOO_LONG' | translate }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="user-account-title">
+      <div class="form-section__heading">
+        <span><mat-icon>contact_mail</mat-icon></span>
+        <div>
+          <h3 id="user-account-title">{{ 'USER_DIALOG.ACCOUNT' | translate }}</h3>
+          <p>{{ 'USER_DIALOG.ACCOUNT_HINT' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_DIALOG.USERNAME' | translate }}</mat-label>
+          <mat-icon matPrefix>alternate_email</mat-icon>
+          <input matInput formControlName="userName" autocomplete="username">
+          @if (form.controls.userName.touched && form.controls.userName.hasError('required')) {
+            <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+          } @else if (form.controls.userName.touched && form.controls.userName.hasError('maxlength')) {
+            <mat-error>{{ 'USER_DIALOG.USERNAME_TOO_LONG' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_DIALOG.EMAIL' | translate }}</mat-label>
+          <mat-icon matPrefix>mail_outline</mat-icon>
+          <input matInput type="email" formControlName="email" autocomplete="email">
+          @if (form.controls.email.touched && form.controls.email.hasError('required')) {
+            <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+          } @else if (form.controls.email.touched && form.controls.email.hasError('email')) {
+            <mat-error>{{ 'ERROR.INVALID_EMAIL' | translate }}</mat-error>
+          } @else if (form.controls.email.touched && form.controls.email.hasError('maxlength')) {
+            <mat-error>{{ 'USER_DIALOG.EMAIL_TOO_LONG' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'USER_DIALOG.PHONE' | translate }}</mat-label>
+          <mat-icon matPrefix>phone</mat-icon>
+          <input matInput type="tel" formControlName="phone" autocomplete="tel">
+          @if (form.controls.phone.touched && form.controls.phone.hasError('pattern')) {
+            <mat-error>{{ 'ERROR.INVALID_PHONE' | translate }}</mat-error>
+          } @else if (form.controls.phone.touched && form.controls.phone.hasError('minlength')) {
+            <mat-error>{{ 'USER_DIALOG.PHONE_TOO_SHORT' | translate }}</mat-error>
+          } @else if (form.controls.phone.touched && form.controls.phone.hasError('maxlength')) {
+            <mat-error>{{ 'USER_DIALOG.PHONE_TOO_LONG' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <div class="status-control">
+          <div class="status-control__copy">
+            <span>{{ 'USER_DIALOG.STATUS' | translate }}</span>
+            <small>{{ (form.controls.active.value ? 'USER_DIALOG.ACTIVE_HINT' : 'USER_DIALOG.INACTIVE_HINT') | translate }}</small>
+          </div>
+          <mat-slide-toggle formControlName="active">
+            {{ (form.controls.active.value ? 'USER.ACTIVE' : 'USER.INACTIVE') | translate }}
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </section>
+
+    @if (isCreate) {
+      <section class="form-section" aria-labelledby="user-password-title">
+        <div class="form-section__heading">
+          <span><mat-icon>key</mat-icon></span>
+          <div>
+            <h3 id="user-password-title">{{ 'USER_DIALOG.CREDENTIALS' | translate }}</h3>
+            <p>{{ 'USER_DIALOG.CREDENTIALS_HINT' | translate }}</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'USER_DIALOG.PASSWORD' | translate }}</mat-label>
+            <mat-icon matPrefix>lock_outline</mat-icon>
+            <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hidePassword.set(!hidePassword())"
+              [attr.aria-label]="(hidePassword() ? 'USER_DIALOG.SHOW_PASSWORD' : 'USER_DIALOG.HIDE_PASSWORD') | translate">
+              <mat-icon>{{ hidePassword() ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+            @if (form.controls.password.touched && form.controls.password.hasError('required')) {
+              <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+            } @else if (form.controls.password.touched && form.controls.password.hasError('passwordStrength')) {
+              <mat-error>{{ 'ERROR.PASSWORD_STRENGTH' | translate }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'USER_DIALOG.CONFIRM_PASSWORD' | translate }}</mat-label>
+            <mat-icon matPrefix>verified_user</mat-icon>
+            <input matInput [type]="hideConfirmation() ? 'password' : 'text'" formControlName="confirmPassword" autocomplete="new-password">
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hideConfirmation.set(!hideConfirmation())"
+              [attr.aria-label]="(hideConfirmation() ? 'USER_DIALOG.SHOW_PASSWORD' : 'USER_DIALOG.HIDE_PASSWORD') | translate">
+              <mat-icon>{{ hideConfirmation() ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+            @if (form.controls.confirmPassword.touched && form.controls.confirmPassword.hasError('required')) {
+              <mat-error>{{ 'ERROR.REQUIRED_FIELD' | translate }}</mat-error>
+            } @else if (form.controls.confirmPassword.touched && form.controls.confirmPassword.hasError('mustMatch')) {
+              <mat-error>{{ 'ERROR.PASSWORDS_DO_NOT_MATCH' | translate }}</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </section>
+    }
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="user-dialog-actions">
+  <button mat-stroked-button mat-dialog-close>{{ 'BUTTON.CANCEL' | translate }}</button>
+  <button mat-flat-button class="user-dialog-submit" type="submit" form="user-form">
+    <mat-icon>{{ isCreate ? 'person_add' : 'check' }}</mat-icon>
+    {{ (isCreate ? 'USER_DIALOG.CREATE_ACTION' : 'USER_DIALOG.EDIT_ACTION') | translate }}
+  </button>
+</mat-dialog-actions>

@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ScreensizeService } from '../../../shared/services/screen-size/screen-size.service';
 import { getValidators } from '../../../shared/utilities/data-utilities';
@@ -20,7 +19,6 @@ import { confirmPasswordValidator } from '../../../shared/validators/confirm-pas
   imports: [
     ReactiveFormsModule,
     MatIconModule,
-    MatToolbarModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,

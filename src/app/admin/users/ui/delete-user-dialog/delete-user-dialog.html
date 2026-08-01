@@ -1,0 +1,43 @@
+<header class="delete-dialog-header">
+  <span class="delete-dialog-header__icon"><mat-icon>person_remove</mat-icon></span>
+  <h2 id="delete-user-title" class="delete-dialog-header__title">
+    {{ 'DELETE_USER.TITLE' | translate }}
+  </h2>
+  <button
+    mat-icon-button
+    class="delete-dialog-header__close"
+    mat-dialog-close
+    [attr.aria-label]="'DELETE_USER.CLOSE' | translate">
+    <mat-icon>close</mat-icon>
+  </button>
+</header>
+
+<mat-dialog-content class="delete-dialog-content">
+  <div class="delete-symbol" aria-hidden="true"><mat-icon>delete_forever</mat-icon></div>
+  <p class="delete-question">{{ 'DELETE_USER.QUESTION' | translate }}</p>
+  <p class="delete-description">{{ 'DELETE_USER.DESCRIPTION' | translate }}</p>
+
+  <div class="user-summary">
+    <span class="user-summary__avatar"><mat-icon>person</mat-icon></span>
+    <div class="user-summary__copy">
+      <strong>{{ user.fullName }}</strong>
+      <span>&#64;{{ user.userName }}</span>
+    </div>
+    <span class="user-summary__status" [class.user-summary__status--inactive]="!user.active">
+      {{ (user.active ? 'USER.ACTIVE' : 'USER.INACTIVE') | translate }}
+    </span>
+  </div>
+
+  <div class="delete-warning">
+    <mat-icon>warning_amber</mat-icon>
+    <span>{{ 'DELETE_USER.WARNING' | translate }}</span>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="delete-dialog-actions">
+  <button mat-stroked-button mat-dialog-close>{{ 'BUTTON.CANCEL' | translate }}</button>
+  <button mat-flat-button class="delete-dialog-submit" (click)="onConfirm()">
+    <mat-icon>delete</mat-icon>
+    {{ 'DELETE_USER.ACTION' | translate }}
+  </button>
+</mat-dialog-actions>
