@@ -12,7 +12,7 @@ export const mainRoutes: Routes = [
         path: 'admin',
         children: adminRoutes,
         data: {
-            roles: ['Admin']
+            roles: ['Administrator']
         }
     },
     {
@@ -36,7 +36,7 @@ export const mainRoutes: Routes = [
         loadComponent: () => import('../../account/feature/account/account').then(m => m.Account),
         data: {
             title: 'MyAccount',
-            roles: ['Admin', 'Employee', 'User']
+            roles: ['Administrator', 'Employee', 'User']
         }
     }
 ];

@@ -21,6 +21,17 @@ export class BookingService {
      * Fetches booking requests from the API and updates the bookingRequests signal.
      * @returns Promise resolving to the fetched booking requests.
      */
+    // fetchBookingRequests(): Promise<BookingRequestModel[]> {
+    //     return this.db.fetch<BookingRequestModel[]>(`${environment.api}/Booking/GetBookingsForLoggedUser`, this.#bookingRequests, data => {
+    //         return data.map((item: any) => ({
+    //             ...item,
+    //             userFullName: item.userFullName ? item.userFullName : 'TO DO',
+    //             startDate: new Date(item.startDate),
+    //             endDate: new Date(item.endDate),
+    //             createdAt: item.createDate ? new Date(item.createDate) : undefined
+    //         }));
+    //     });
+    // }
     fetchBookingRequests(): Promise<BookingRequestModel[]> {
         return this.db.fetch<BookingRequestModel[]>(`${environment.apiUrl}/bookings/getAllRequests`, this.#bookingRequests, data => {
             return data.map((item: any) => ({
@@ -41,5 +52,19 @@ export class BookingService {
             }));
         });
     }
+
+    // fetchDaysWithStatusForMonth(year: number, month: number): Promise<BookingStatusDayModel[]> {
+
+    // }
     
 }
+
+    // id?: number;
+    // userFullName: string;
+    // startDate: string | Date;
+    // endDate: string | Date;
+    // city: string;
+    // venue: string;
+    // contactPhone?: string;
+    // eventDescription?: string;
+    // status?: string;

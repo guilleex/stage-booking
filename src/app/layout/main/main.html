@@ -10,21 +10,21 @@
 
       <mat-nav-list class="sidebar__nav">
 
-        <a *appHasRole="['Admin']" mat-list-item
+        <a *appHasRole="['Administrator']" mat-list-item
            routerLink="/admin/dashboard" routerLinkActive #dashRla="routerLinkActive"
            [activated]="dashRla.isActive">
           <mat-icon matListItemIcon>dashboard</mat-icon>
           <span matListItemTitle>{{ 'PAGE.DASHBOARD' | translate }}</span>
         </a>
 
-        <a *appHasRole="['Admin']" mat-list-item
+        <a *appHasRole="['Administrator']" mat-list-item
            routerLink="/admin/employees" routerLinkActive #empRla="routerLinkActive"
            [activated]="empRla.isActive">
           <mat-icon matListItemIcon>badge</mat-icon>
           <span matListItemTitle>{{ 'PAGE.EMPLOYEES' | translate }}</span>
         </a>
 
-        <a *appHasRole="['Admin']" mat-list-item
+        <a *appHasRole="['Administrator']" mat-list-item
            routerLink="/admin/users" routerLinkActive #usersRla="routerLinkActive"
            [activated]="usersRla.isActive">
           <mat-icon matListItemIcon>group</mat-icon>
@@ -38,7 +38,7 @@
           <span matListItemTitle>{{ 'PAGE.HOME' | translate }}</span>
         </a>
 
-        <a *appHasRole="['Admin', 'Employee', 'User']" mat-list-item
+        <a *appHasRole="['Administrator', 'Employee', 'User']" mat-list-item
            routerLink="/my-account" routerLinkActive #accountRla="routerLinkActive"
            [activated]="accountRla.isActive">
           <mat-icon matListItemIcon>account_circle</mat-icon>
@@ -95,7 +95,7 @@
 
     <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="bottom-nav">
 
-      <a *appHasRole="['Admin']" mat-tab-link
+      <a *appHasRole="['Administrator']" mat-tab-link
          routerLink="/admin/dashboard" routerLinkActive #mobDashRla="routerLinkActive"
          [active]="mobDashRla.isActive">
         <span class="bottom-nav__content">
@@ -104,7 +104,7 @@
         </span>
       </a>
 
-      <a *appHasRole="['Admin']" mat-tab-link
+      <a *appHasRole="['Administrator']" mat-tab-link
          routerLink="/admin/employees" routerLinkActive #mobEmpRla="routerLinkActive"
          [active]="mobEmpRla.isActive">
         <span class="bottom-nav__content">
@@ -113,7 +113,7 @@
         </span>
       </a>
 
-      <a *appHasRole="['Admin']" mat-tab-link
+      <a *appHasRole="['Administrator']" mat-tab-link
          routerLink="/admin/users" routerLinkActive #mobUsersRla="routerLinkActive"
          [active]="mobUsersRla.isActive">
         <span class="bottom-nav__content">
@@ -131,7 +131,7 @@
         </span>
       </a>
 
-      <a *appHasRole="['Admin', 'Employee', 'User']" mat-tab-link
+      <a *appHasRole="['Administrator', 'Employee', 'User']" mat-tab-link
          routerLink="/my-account" routerLinkActive #mobAccountRla="routerLinkActive"
          [active]="mobAccountRla.isActive">
         <span class="bottom-nav__content">

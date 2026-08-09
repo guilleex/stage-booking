@@ -82,7 +82,8 @@ export class AuthService {
   async login(userName: string, password: string): Promise<AuthApiData> {
     return await firstValueFrom(
       this.http.post<AuthApiData>(
-        `${environment.apiUrl}/LOGIN/LOGIN`, 
+        // `${environment.apiUrl}/LOGIN/LOGIN`, 
+        `${environment.api}/Login/Login`, 
         { userName, password })
        .pipe(
           tap(user => this.setUser(user))
@@ -144,7 +145,8 @@ export class AuthService {
   async refreshToken(user: AuthModel | null): Promise<RefreshTokenApiResponse> {
 
     const user$ = this.http.post<RefreshTokenApiResponse>(
-      `${environment.apiUrl}/Login/CheckRefreshToke`,
+      // `${environment.apiUrl}/Login/CheckRefreshToke`,
+      `${environment.api}/Login/CheckRefreshToke`,
       {
         userName: user!.username,
         accessToken: user!.token,

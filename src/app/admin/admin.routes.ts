@@ -6,7 +6,7 @@ export const adminRoutes: Routes = [
         loadComponent: () => import('../admin/dashboard/feature/dashboard/dashboard').then(m => m.Dashboard),
         data: {
             title: 'Dashboard',
-            roles: ['Admin']
+            // roles: ['Administrator']
         }
     },
     {
@@ -14,7 +14,7 @@ export const adminRoutes: Routes = [
         loadComponent: () => import('../admin/users/feature/users/users').then(m => m.Users),
         data: {
             title: 'Users',
-            roles: ['Admin']
+            // roles: ['Administrator']
         }
     },
     {
@@ -22,7 +22,7 @@ export const adminRoutes: Routes = [
         loadComponent: () => import('../admin/employees/feature/employees/employees').then(m => m.Employees),
         data: {
             title: 'Employees',
-            roles: ['Admin']
+            // roles: ['Administrator']
         }
     }
 ];
